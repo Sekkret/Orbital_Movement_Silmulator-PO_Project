@@ -1,5 +1,5 @@
 package Simulator;
-
+//Hoafrost
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -24,7 +24,7 @@ public class MainFrame extends JFrame {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setTitle("Symulacja BETA");
 		
-		
+	
 		newItem = new JMenuItem("Nowy");
 		saveItem = new JMenuItem("Zapisz");
 		writeItem = new JMenuItem("Wczytaj");
