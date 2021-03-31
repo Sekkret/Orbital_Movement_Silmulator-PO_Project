@@ -17,7 +17,7 @@ import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 
 public class MainFrame extends JFrame {
-
+//Hoafrost test
 	public MainFrame() throws HeadlessException {
 		
 		this.setSize(960, 600);
