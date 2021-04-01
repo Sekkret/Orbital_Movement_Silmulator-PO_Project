@@ -29,6 +29,10 @@ public class TitledTextField extends JPanel {
 		return textField.getText();
 	}
 	
+	public void setTitle(String text) {
+		title.setText(text);
+	}
+	
 	JLabel title;
 	JTextField textField;
 	

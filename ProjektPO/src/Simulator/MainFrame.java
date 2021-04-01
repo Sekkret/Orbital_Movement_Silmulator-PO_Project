@@ -4,6 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -16,6 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 
+
+
 public class MainFrame extends JFrame {
 //Hoafrost test
 	public MainFrame() throws HeadlessException {
@@ -24,26 +30,34 @@ public class MainFrame extends JFrame {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setTitle("Symulacja BETA");
 		
-	
-		newItem = new JMenuItem("Nowy");
-		saveItem = new JMenuItem("Zapisz");
-		writeItem = new JMenuItem("Wczytaj");
-		fileMenu = new JMenu("Plik");
+		languageS = "pl";
+		countryS = "PL";
+		BundleLanguages bundle = new BundleLanguages();
+		
+		
+		newItem = new JMenuItem();
+		saveItem = new JMenuItem();
+		writeItem = new JMenuItem();
+		fileMenu = new JMenu();
 		fileMenu.add(newItem);
 		fileMenu.add(saveItem);
 		fileMenu.add(writeItem);
 		
-		manualItem = new JMenuItem("Instrukcja");
-		aboutItem = new JMenuItem("O programie");
-		helpMenu = new JMenu("Pomoc");
+		manualItem = new JMenuItem();
+		aboutItem = new JMenuItem();
+		helpMenu = new JMenu();
 		helpMenu.add(manualItem);
 		helpMenu.add(aboutItem);
 		
-		languageItem = new JMenuItem("Jêzyk");
-		colorItem = new JMenuItem("Kolor");
-		settingsMenu = new JMenu("Ustawienia");
-		settingsMenu.add(languageItem);
+		languageMenu = new JMenu();
+		colorItem = new JMenuItem();
+		settingsMenu = new JMenu();
+		polishItem = new JMenuItem("polski");
+		englishItem = new JMenuItem("angielski");;
+		settingsMenu.add(languageMenu);
 		settingsMenu.add(colorItem);
+		languageMenu.add(polishItem);
+		languageMenu.add(englishItem);
 		
 		menuBar = new JMenuBar();
 		menuBar.add(fileMenu);
@@ -53,14 +67,14 @@ public class MainFrame extends JFrame {
 		WhiteBoardPanel = new JPanel();
 		WhiteBoardPanel.setBackground(Color.WHITE);
 		
-		currentVelocity = new TitledLabel("Szybkoœæ cia³a","0");
-		currentAngularMomentum = new TitledLabel("Moment Pêdu","0");
-		currentKineticEnergy = new TitledLabel("Energia Kinetyczna","0");
-		currentPotential = new TitledLabel("Potencja³","0");
-		currentEffectivePotential = new TitledLabel("Potencja³ Efektywny","0");
-		currentDistance = new TitledLabel("Dystans miêdzy cia³ami","0");
-		currentEnergy = new TitledLabel("Energia ca³kowita","0");
-		currentReductedMass = new TitledLabel("Masa zredukowana","0");
+		currentVelocity = new TitledLabel("","0");
+		currentAngularMomentum = new TitledLabel("","0");
+		currentKineticEnergy = new TitledLabel("","0");
+		currentPotential = new TitledLabel("","0");
+		currentEffectivePotential = new TitledLabel("","0");
+		currentDistance = new TitledLabel("","0");
+		currentEnergy = new TitledLabel("","0");
+		currentReductedMass = new TitledLabel("","0");
 		
 		statsPanel = new JPanel();
 		statsPanel.setLayout(new GridLayout(2,4));
@@ -78,16 +92,12 @@ public class MainFrame extends JFrame {
 		leftSidePanel.add(WhiteBoardPanel, BorderLayout.CENTER);
 		leftSidePanel.add(statsPanel, BorderLayout.SOUTH);
 		
-		
-		
-		
-		
-		centralMassInput = new TitledTextField("Masa centralna", "100");
-		orbitingMassInput = new TitledTextField("Masa orbituj¹ca", "20");
+		centralMassInput = new TitledTextField("", "100");
+		orbitingMassInput = new TitledTextField("", "20");
 		xValueInput = new TitledTextField("x", "0");
 		yValueInput = new TitledTextField("y", "0");
-		velocityValueInput = new TitledTextField("wartoœæ prêdkoœci", "0");
-		velocityDirectionInput = new TitledTextField("kierunek prêdkoœci", "0");
+		velocityValueInput = new TitledTextField("", "0");
+		velocityDirectionInput = new TitledTextField("", "0");
 		
 		inputPanel = new JPanel();
 		inputPanel.setLayout(new GridLayout(4,2));
@@ -98,19 +108,19 @@ public class MainFrame extends JFrame {
 		inputPanel.add(velocityValueInput);
 		inputPanel.add(velocityDirectionInput);
 		
-		startButton = new JButton("START");
+		startButton = new JButton();
 		
 		upperRightPanel = new JPanel();
 		upperRightPanel.setLayout(new BorderLayout());
 		upperRightPanel.add(inputPanel, BorderLayout.CENTER);
 		upperRightPanel.add(startButton, BorderLayout.SOUTH);
 		
-		axisDisplay = new JCheckBox("osie");
-		trajectoryDisplay = new JCheckBox("tor ruchu");
-		animationDisplay = new JCheckBox("animacja");
-		velocityDisplay = new JCheckBox("wektor prêdkoœci");
-		velocityComponentsDisplay = new JCheckBox("sk³adowe wektora");
-		zoomSliderLabel = new JLabel("Powiêkszenie:");
+		axisDisplay = new JCheckBox();
+		trajectoryDisplay = new JCheckBox();
+		animationDisplay = new JCheckBox();
+		velocityDisplay = new JCheckBox();
+		velocityComponentsDisplay = new JCheckBox();
+		zoomSliderLabel = new JLabel();
 		zoomSlider = new JSlider();
 		settingsPanel = new JPanel();
 		settingsPanel.setLayout(new GridLayout(8,1));
@@ -131,6 +141,30 @@ public class MainFrame extends JFrame {
 		this.add(leftSidePanel, BorderLayout.CENTER);
 		this.setJMenuBar(menuBar);
 		
+		bundle.changeLanguage();
+		
+		ActionListener englishLanguageListener= new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				languageS = "en";
+				countryS = "US";
+				bundle.changeLanguage();
+
+			}	
+		};
+		englishItem.addActionListener(englishLanguageListener );
+		
+		ActionListener polishLanguageListener  = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				languageS = "pl";
+				countryS = "PL";
+				bundle.changeLanguage();
+
+			}	
+		};
+		polishItem.addActionListener(polishLanguageListener );
+		
 	}
 
 	public static void main(String[] args) {
@@ -149,47 +183,54 @@ public class MainFrame extends JFrame {
 	
 	JPanel upperRightPanel;
 	JPanel inputPanel;
-	TitledTextField centralMassInput;
-	TitledTextField orbitingMassInput;
+	static TitledTextField centralMassInput;
+	static TitledTextField orbitingMassInput;
 	TitledTextField xValueInput;
 	TitledTextField yValueInput;
-	TitledTextField velocityValueInput;
-	TitledTextField velocityDirectionInput;
+	static TitledTextField velocityValueInput;
+	static TitledTextField velocityDirectionInput;
 	
-	JButton startButton;
+	static JButton startButton;
 	
 	JPanel settingsPanel;
-	JCheckBox axisDisplay;
-	JCheckBox trajectoryDisplay;
-	JCheckBox animationDisplay;
-	JCheckBox velocityDisplay;
-	JCheckBox velocityComponentsDisplay;
-	JLabel zoomSliderLabel;
+	static JCheckBox axisDisplay;
+	static JCheckBox trajectoryDisplay;
+	static JCheckBox animationDisplay;
+	static JCheckBox velocityDisplay;
+	static JCheckBox velocityComponentsDisplay;
+	static JLabel zoomSliderLabel;
 	JSlider zoomSlider;
 	
 	JPanel leftSidePanel;
 	JPanel WhiteBoardPanel;
 	JPanel statsPanel;
-	TitledLabel currentVelocity;
-	TitledLabel currentAngularMomentum;
-	TitledLabel currentKineticEnergy;
-	TitledLabel currentPotential;
-	TitledLabel currentEffectivePotential;
-	TitledLabel currentDistance;
-	TitledLabel currentEnergy;
-	TitledLabel currentReductedMass;
+	static TitledLabel currentVelocity;
+	static TitledLabel currentAngularMomentum;
+	static TitledLabel currentKineticEnergy;
+	static TitledLabel currentPotential;
+	static TitledLabel currentEffectivePotential;
+	static TitledLabel currentDistance;
+	static TitledLabel currentEnergy;
+	static TitledLabel currentReductedMass;
 	
 	JMenuBar menuBar;
-	JMenu fileMenu;
-	JMenuItem newItem;
-	JMenuItem saveItem;
-	JMenuItem writeItem;
-	JMenu helpMenu;
-	JMenuItem manualItem;
-	JMenu settingsMenu;
-	JMenuItem languageItem;
-	JMenuItem colorItem;
-	JMenuItem aboutItem;
+	static JMenu fileMenu;
+	static JMenuItem newItem;
+	static JMenuItem saveItem;
+	static JMenuItem writeItem;
+	static JMenu helpMenu;
+	static JMenuItem manualItem;
+	static JMenu settingsMenu;
+	static JMenu languageMenu;
+	static JMenuItem colorItem;
+	static JMenuItem aboutItem;
+	JMenuItem polishItem;
+	JMenuItem englishItem;
 	
-
+	static String languageS;
+	static String countryS;
+	Locale language;
+	ResourceBundle rBundle;
+	
+	
 }
