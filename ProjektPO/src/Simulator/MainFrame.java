@@ -53,7 +53,7 @@ public class MainFrame extends JFrame {
 		colorItem = new JMenuItem();
 		settingsMenu = new JMenu();
 		polishItem = new JMenuItem("polski");
-		englishItem = new JMenuItem("angielski");;
+		englishItem = new JMenuItem("english");;
 		settingsMenu.add(languageMenu);
 		settingsMenu.add(colorItem);
 		languageMenu.add(polishItem);
