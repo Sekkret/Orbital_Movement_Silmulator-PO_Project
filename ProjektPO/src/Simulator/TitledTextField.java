@@ -1,11 +1,13 @@
 package Simulator;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 public class TitledTextField extends JPanel {
 
@@ -13,8 +15,10 @@ public class TitledTextField extends JPanel {
 		this.setLayout(new GridLayout(2,1));
 				
 		title = new JLabel(frontText);
+		title.setBorder(new LineBorder(Color.black ,1));
 		this.add(title);
 		textField = new JTextField(insideText);
+		textField.setBorder(new LineBorder(Color.black ,1));
 		this.add(textField);
 	}
 	public TitledTextField(String frontText) {

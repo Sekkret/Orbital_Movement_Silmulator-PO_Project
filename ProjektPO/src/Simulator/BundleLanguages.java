@@ -4,7 +4,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class BundleLanguages {
-
+//Bartosz Skura
 	public BundleLanguages() {
 
 	}

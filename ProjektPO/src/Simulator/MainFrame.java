@@ -2,6 +2,7 @@ package Simulator;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -23,7 +24,7 @@ import javax.swing.SwingUtilities;
 
 
 public class MainFrame extends JFrame {
-//Hoafrost test
+
 	public MainFrame() throws HeadlessException {
 		
 		this.setSize(960, 600);
