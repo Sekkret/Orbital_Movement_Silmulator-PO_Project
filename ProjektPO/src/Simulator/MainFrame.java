@@ -139,6 +139,7 @@ public class MainFrame extends JFrame {
 		rightSidePanel.add(settingsPanel, BorderLayout.SOUTH);
 		
 		this.add(rightSidePanel, BorderLayout.EAST);
+		rightSidePanel.setPreferredSize(new Dimension(240,600));
 		this.add(leftSidePanel, BorderLayout.CENTER);
 		this.setJMenuBar(menuBar);
 		
