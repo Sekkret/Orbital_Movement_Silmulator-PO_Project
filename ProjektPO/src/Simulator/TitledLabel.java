@@ -1,10 +1,12 @@
 package Simulator;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 public class TitledLabel extends JPanel {
 
@@ -15,6 +17,8 @@ public class TitledLabel extends JPanel {
 		this.setLayout(new GridLayout(2,1));
 		this.add(title);
 		this.add(label);
+		
+		this.setBorder(new LineBorder(Color.BLACK ,1));
 	}
 
 	public TitledLabel(String up) {
