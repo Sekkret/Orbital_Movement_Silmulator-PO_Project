@@ -33,8 +33,7 @@ public class MainFrame extends JFrame {
 		
 		languageS = "pl";
 		countryS = "PL";
-		BundleLanguages bundle = new BundleLanguages();
-		
+		BundleLanguages bundle = new BundleLanguages(this);
 		
 		newItem = new JMenuItem();
 		saveItem = new JMenuItem();
@@ -181,56 +180,60 @@ public class MainFrame extends JFrame {
 
 	}
 	
+
+
+
+
 	JPanel rightSidePanel;
 	
 	JPanel upperRightPanel;
 	JPanel inputPanel;
-	static TitledTextField centralMassInput;
-	static TitledTextField orbitingMassInput;
+	TitledTextField centralMassInput;
+	TitledTextField orbitingMassInput;
 	TitledTextField xValueInput;
 	TitledTextField yValueInput;
-	static TitledTextField velocityValueInput;
-	static TitledTextField velocityDirectionInput;
+	TitledTextField velocityValueInput;
+	TitledTextField velocityDirectionInput;
 	
-	static JButton startButton;
+	JButton startButton;
 	
 	JPanel settingsPanel;
-	static JCheckBox axisDisplay;
-	static JCheckBox trajectoryDisplay;
-	static JCheckBox animationDisplay;
-	static JCheckBox velocityDisplay;
-	static JCheckBox velocityComponentsDisplay;
-	static JLabel zoomSliderLabel;
+	JCheckBox axisDisplay;
+	JCheckBox trajectoryDisplay;
+	JCheckBox animationDisplay;
+	JCheckBox velocityDisplay;
+	JCheckBox velocityComponentsDisplay;
+	JLabel zoomSliderLabel;
 	JSlider zoomSlider;
 	
 	JPanel leftSidePanel;
 	JPanel WhiteBoardPanel;
 	JPanel statsPanel;
-	static TitledLabel currentVelocity;
-	static TitledLabel currentAngularMomentum;
-	static TitledLabel currentKineticEnergy;
-	static TitledLabel currentPotential;
-	static TitledLabel currentEffectivePotential;
-	static TitledLabel currentDistance;
-	static TitledLabel currentEnergy;
-	static TitledLabel currentReductedMass;
+	TitledLabel currentVelocity;
+	TitledLabel currentAngularMomentum;
+	TitledLabel currentKineticEnergy;
+	TitledLabel currentPotential;
+	TitledLabel currentEffectivePotential;
+	TitledLabel currentDistance;
+	TitledLabel currentEnergy;
+	TitledLabel currentReductedMass;
 	
 	JMenuBar menuBar;
-	static JMenu fileMenu;
-	static JMenuItem newItem;
-	static JMenuItem saveItem;
-	static JMenuItem writeItem;
-	static JMenu helpMenu;
-	static JMenuItem manualItem;
-	static JMenu settingsMenu;
-	static JMenu languageMenu;
-	static JMenuItem colorItem;
-	static JMenuItem aboutItem;
+	JMenu fileMenu;
+	JMenuItem newItem;
+	JMenuItem saveItem;
+	JMenuItem writeItem;
+	JMenu helpMenu;
+	JMenuItem manualItem;
+	JMenu settingsMenu;
+	JMenu languageMenu;
+	JMenuItem colorItem;
+	JMenuItem aboutItem;
 	JMenuItem polishItem;
 	JMenuItem englishItem;
 	
-	static String languageS;
-	static String countryS;
+	String languageS;
+	String countryS;
 	Locale language;
 	ResourceBundle rBundle;
 	
