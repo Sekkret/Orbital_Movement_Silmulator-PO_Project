@@ -11,18 +11,16 @@ import javax.swing.JSlider;
 public class OptionPanel extends JPanel {
 
 	public OptionPanel() {
-		axisDisplay = new JCheckBox("osie");
-		trajectoryDisplay = new JCheckBox("tor ruchu");
-		animationDisplay = new JCheckBox("animacja");
-		velocityDisplay = new JCheckBox("wektor prędkości");
-		velocityComponentsDisplay = new JCheckBox("składowe wektora");
-		zoomSliderLabel = new JLabel("Powiększenie:");
+		axisDisplay = new JCheckBox();
+		trajectoryDisplay = new JCheckBox();
+		velocityDisplay = new JCheckBox();
+		velocityComponentsDisplay = new JCheckBox();
+		zoomSliderLabel = new JLabel("",JLabel.CENTER);
 		zoomSlider = new JSlider();
 		
 		this.setLayout(new GridLayout(8,1));
 		this.add(axisDisplay);
 		this.add(trajectoryDisplay);
-		this.add(animationDisplay);
 		this.add(velocityDisplay);
 		this.add(velocityComponentsDisplay);
 		this.add(zoomSliderLabel);
@@ -31,7 +29,6 @@ public class OptionPanel extends JPanel {
 
 	JCheckBox axisDisplay;
 	JCheckBox trajectoryDisplay;
-	JCheckBox animationDisplay;
 	JCheckBox velocityDisplay;
 	JCheckBox velocityComponentsDisplay;
 	JLabel zoomSliderLabel;

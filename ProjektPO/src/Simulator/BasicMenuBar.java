@@ -8,25 +8,29 @@ public class BasicMenuBar extends JMenuBar {
 
 	public BasicMenuBar() {
 		
-		newItem = new JMenuItem("Nowy");
-		saveItem = new JMenuItem("Zapisz");
-		writeItem = new JMenuItem("Wczytaj");
-		fileMenu = new JMenu("Plik");
+		newItem = new JMenuItem();
+		saveItem = new JMenuItem();
+		writeItem = new JMenuItem();
+		fileMenu = new JMenu();
 		fileMenu.add(newItem);
 		fileMenu.add(saveItem);
 		fileMenu.add(writeItem);
 		
-		manualItem = new JMenuItem("Instrukcja");
-		aboutItem = new JMenuItem("O programie");
-		helpMenu = new JMenu("Pomoc");
+		manualItem = new JMenuItem();
+		aboutItem = new JMenuItem();
+		helpMenu = new JMenu();
 		helpMenu.add(manualItem);
 		helpMenu.add(aboutItem);
 		
-		languageItem = new JMenuItem("Język");
-		colorItem = new JMenuItem("Kolor");
-		settingsMenu = new JMenu("Ustawienia");
-		settingsMenu.add(languageItem);
+		languageMenu = new JMenu();
+		colorItem = new JMenuItem();
+		settingsMenu = new JMenu();
+		polishItem = new JMenuItem("polski");
+		englishItem = new JMenuItem("english");
+		settingsMenu.add(languageMenu);
 		settingsMenu.add(colorItem);
+		languageMenu.add(polishItem);
+		languageMenu.add(englishItem);
 		
 		this.add(fileMenu);
 		this.add(helpMenu);
@@ -41,7 +45,9 @@ public class BasicMenuBar extends JMenuBar {
 	JMenu helpMenu;
 	JMenuItem manualItem;
 	JMenu settingsMenu;
-	JMenuItem languageItem;
+	JMenu languageMenu;
 	JMenuItem colorItem;
 	JMenuItem aboutItem;
+	JMenuItem englishItem;
+	JMenuItem polishItem;
 }

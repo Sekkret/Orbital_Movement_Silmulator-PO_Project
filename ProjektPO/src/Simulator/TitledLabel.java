@@ -11,7 +11,7 @@ import javax.swing.border.LineBorder;
 public class TitledLabel extends JPanel {
 
 	public TitledLabel(String up, String down) {
-		title = new JLabel(up);
+		title = new JLabel(up,JLabel.CENTER);
 		label = new JLabel(down);
 		
 		this.setLayout(new GridLayout(2,1));

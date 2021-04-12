@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -17,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 
+import BundleLanguages.BundleLanguages;
+
 public class MainFrame extends JFrame {
 
 	public MainFrame() throws HeadlessException {
@@ -25,7 +29,10 @@ public class MainFrame extends JFrame {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setTitle("Symulacja BETA");
 		
-	
+		languageS = "pl";
+		countryS = "PL";
+		BundleLanguages bundle = new BundleLanguages(this);
+		
 		
 		WhiteBoardPanel = new JPanel();
 		WhiteBoardPanel.setBackground(Color.WHITE);
@@ -62,7 +69,33 @@ public class MainFrame extends JFrame {
 		
 		this.add(rightSidePanel, BorderLayout.EAST);
 		this.add(leftSidePanel, BorderLayout.CENTER);
-		this.setJMenuBar(menuBar);
+	 	this.setJMenuBar(menuBar);
+	 	
+	 	bundle.changeLanguage();
+	 	
+	 	ActionListener englishLanguageListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				languageS = "en";
+				countryS = "US";
+				bundle.changeLanguage();
+
+			}	
+		};
+		menuBar.englishItem.addActionListener(englishLanguageListener );
+		
+		ActionListener polishLanguageListener  = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				languageS = "pl";
+				countryS = "PL";
+				bundle.changeLanguage();
+
+			}
+
+
+		};
+		menuBar.polishItem.addActionListener(polishLanguageListener );
 		
 	}
 
@@ -78,6 +111,9 @@ public class MainFrame extends JFrame {
 
 	}
 	
+
+
+
 	JPanel rightSidePanel;
 	JPanel upperRightPanel;
 	InputPanel inputPanel;
@@ -89,5 +125,10 @@ public class MainFrame extends JFrame {
 	DataPanel dataPanel;
 	
 	BasicMenuBar menuBar;
+	String countryS;
+	String languageS;
+	
+
+
 
 }

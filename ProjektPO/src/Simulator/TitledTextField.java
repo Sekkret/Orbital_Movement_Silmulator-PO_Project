@@ -14,7 +14,7 @@ public class TitledTextField extends JPanel {
 	public TitledTextField(String frontText, String insideText) {
 		this.setLayout(new GridLayout(2,1));
 				
-		title = new JLabel(frontText);
+		title = new JLabel(frontText,JLabel.CENTER);
 		this.add(title);
 		textField = new JTextField(insideText);
 		this.add(textField);
@@ -31,6 +31,9 @@ public class TitledTextField extends JPanel {
 		this.add(textField);
 	}
 	
+	public String getTitle() {
+		return title.getText();
+	}
 	
 	String getText() {
 		return textField.getText();
