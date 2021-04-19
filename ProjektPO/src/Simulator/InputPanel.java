@@ -24,6 +24,29 @@ public class InputPanel extends JPanel {
 		this.add(velocityDirectionInput);		
 	}
 	
+	
+	
+	public TitledTextField getCentralMassInput() {
+		return centralMassInput;
+	}
+	public TitledTextField getOrbitingMassInput() {
+		return orbitingMassInput;
+	}
+	public TitledTextField getxValueInput() {
+		return xValueInput;
+	}
+	public TitledTextField getyValueInput() {
+		return yValueInput;
+	}
+	public TitledTextField getVelocityValueInput() {
+		return velocityValueInput;
+	}
+	public TitledTextField getVelocityDirectionInput() {
+		return velocityDirectionInput;
+	}
+
+
+
 	TitledTextField centralMassInput;
 	TitledTextField orbitingMassInput;
 	TitledTextField xValueInput;

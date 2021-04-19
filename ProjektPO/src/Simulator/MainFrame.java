@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
+import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,6 +21,8 @@ import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 
 import BundleLanguages.BundleLanguages;
+import Simulator.listeners.*;
+import Whiteboard.WhiteboardPanel;
 
 public class MainFrame extends JFrame {
 
@@ -34,14 +37,13 @@ public class MainFrame extends JFrame {
 		BundleLanguages bundle = new BundleLanguages(this);
 		
 		
-		WhiteBoardPanel = new JPanel();
-		WhiteBoardPanel.setBackground(Color.WHITE);
+		whiteboardPanel = new WhiteboardPanel();
 		
 		dataPanel = new DataPanel();
 		
 		leftSidePanel = new JPanel();
 		leftSidePanel.setLayout(new BorderLayout());
-		leftSidePanel.add(WhiteBoardPanel, BorderLayout.CENTER);
+		leftSidePanel.add(whiteboardPanel, BorderLayout.CENTER);
 		leftSidePanel.add(dataPanel, BorderLayout.SOUTH);
 		
 
@@ -71,6 +73,21 @@ public class MainFrame extends JFrame {
 		this.add(leftSidePanel, BorderLayout.CENTER);
 	 	this.setJMenuBar(menuBar);
 	 	
+	 	//listeners:
+	 	zoomSliderListener = new OptionPanelSliderListener(this);
+	 	optionPanel.zoomSlider.addChangeListener(zoomSliderListener);
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	//languages management:
+	 	
 	 	bundle.changeLanguage();
 	 	
 	 	ActionListener englishLanguageListener = new ActionListener() {
@@ -96,7 +113,9 @@ public class MainFrame extends JFrame {
 
 		};
 		menuBar.polishItem.addActionListener(polishLanguageListener );
-		
+
+		//tmpAxisManager = new AxisManager();
+		//tmpAxisManager.paint(whiteboardPanel.getDrawingSpace());
 	}
 
 	public static void main(String[] args) {
@@ -111,6 +130,42 @@ public class MainFrame extends JFrame {
 
 	}
 	
+	
+
+
+	public InputPanel getInputPanel() {
+		return inputPanel;
+	}
+
+	public JButton getStartButton() {
+		return startButton;
+	}
+
+	public OptionPanel getOptionPanel() {
+		return optionPanel;
+	}
+
+	public WhiteboardPanel getWhiteboardPanel() {
+		return whiteboardPanel;
+	}
+
+	public DataPanel getDataPanel() {
+		return dataPanel;
+	}
+	
+	//public BasicMenuBar getMenuBar() {
+	//	return menuBar;
+	//}
+	//****CZEMU TO NIE DZIAŁA?!!!****//
+
+	public String getCountryS() {
+		return countryS;
+	}
+
+	public String getLanguageS() {
+		return languageS;
+	}
+
 
 
 
@@ -121,12 +176,18 @@ public class MainFrame extends JFrame {
 	OptionPanel optionPanel;
 	
 	JPanel leftSidePanel;
-	JPanel WhiteBoardPanel;
+	WhiteboardPanel whiteboardPanel;
+	//https://docstore.mik.ua/orelly/java-ent/jfc/ch04_03.htm
 	DataPanel dataPanel;
 	
 	BasicMenuBar menuBar;
 	String countryS;
 	String languageS;
+	
+	
+	//listeners:
+	OptionPanelSliderListener zoomSliderListener;
+	
 	
 
 

@@ -14,9 +14,9 @@ public class BundleLanguages {
 		}
 	
 	public void changeLanguage() {
-		Locale language = new Locale(get.getLanguageS(),get.getCountryS());
+		Locale language = new Locale(main.getLanguageS(),main.getCountryS());
 		ResourceBundle rBundle = ResourceBundle.getBundle("BundleLanguages/Bundle",language);
-        get.getNewItem().setText(rBundle.getString("new"));
+		get.getNewItem().setText(rBundle.getString("new"));
         get.getSaveItem().setText(rBundle.getString("save"));
         get.getWriteItem().setText(rBundle.getString("write"));
         get.getFileMenu().setText(rBundle.getString("file"));
@@ -26,24 +26,24 @@ public class BundleLanguages {
         get.getColorItem().setText(rBundle.getString("color"));
         get.getLanguageMenu().setText(rBundle.getString("language"));
         get.getSettingsMenu().setText(rBundle.getString("settings"));
-        get.getStartButton().setText( rBundle.getString("startButton"));
-        get.getAxisDisplay().setText( rBundle.getString("axisDisplay"));
-        get.getTrajectoryDisplay().setText( rBundle.getString("trajectoryDisplay"));
-        get.getVelocityDisplay().setText( rBundle.getString("velocityDisplay"));
-        get.getVelocityComponentsDisplay().setText( rBundle.getString("velocityComponentsDisplay"));
-        get.getZoomSliderLabel().setText(rBundle.getString("zoomSliderLabel"));
-        get.getCentralMassInput().setText(rBundle.getString("centralMassInput"));
-        get.getOrbitingMassInput().setText(rBundle.getString("orbitingMassInput"));
-        get.getVelocityValueInput().setText(rBundle.getString("velocityValueInput"));
-        get.getVelocityDirectionInput().setText(rBundle.getString("velocityDirectionInput"));
-        get.getCurrentVelocity().setText(rBundle.getString("currentVelocity"));
-        get.getCurrentKineticEnergy().setText(rBundle.getString("currentKineticEnergy"));
-        get.getCurrentPotential().setText(rBundle.getString("currentPotential"));
-        get.getCurrentEffectivePotential().setText(rBundle.getString("currentEffectivePotential"));
-        get.getCurrentDistance().setText(rBundle.getString("currentDistance"));
-        get.getCurrentEnergy().setText(rBundle.getString("currentEnergy"));
-        get.getCurrentReductedMass().setText(rBundle.getString("currentReductedMass"));
-        get.getCurrentAngularMomentum().setText(rBundle.getString("currentAngularMomentum"));
+        main.getStartButton().setText( rBundle.getString("startButton"));
+        main.getOptionPanel().getAxisDisplay().setText(rBundle.getString("axisDisplay"));
+        main.getOptionPanel().getTrajectoryDisplay().setText( rBundle.getString("trajectoryDisplay"));
+        main.getOptionPanel().getVelocityDisplay().setText( rBundle.getString("velocityDisplay"));
+        main.getOptionPanel().getVelocityComponentsDisplay().setText( rBundle.getString("velocityComponentsDisplay"));
+        main.getOptionPanel().getZoomSliderLabel().setText(rBundle.getString("zoomSliderLabel"));
+        main.getInputPanel().getCentralMassInput().setTitle(rBundle.getString("centralMassInput"));
+        main.getInputPanel().getOrbitingMassInput().setTitle(rBundle.getString("orbitingMassInput"));
+        main.getInputPanel().getVelocityValueInput().setTitle(rBundle.getString("velocityValueInput"));
+        main.getInputPanel().getVelocityDirectionInput().setTitle(rBundle.getString("velocityDirectionInput"));
+        main.getDataPanel().getCurrentVelocity().setTitle(rBundle.getString("currentVelocity"));
+        main.getDataPanel().getCurrentKineticEnergy().setTitle(rBundle.getString("currentKineticEnergy"));
+        main.getDataPanel().getCurrentPotential().setTitle(rBundle.getString("currentPotential"));
+        main.getDataPanel().getCurrentEffectivePotential().setTitle(rBundle.getString("currentEffectivePotential"));
+        main.getDataPanel().getCurrentDistance().setTitle(rBundle.getString("currentDistance"));
+        main.getDataPanel().getCurrentEnergy().setTitle(rBundle.getString("currentEnergy"));
+        main.getDataPanel().getCurrentReductedMass().setTitle(rBundle.getString("currentReductedMass"));
+        main.getDataPanel().getCurrentAngularMomentum().setTitle(rBundle.getString("currentAngularMomentum"));
 	}
 	MainFrame main;
 	Getters get;

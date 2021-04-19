@@ -5,7 +5,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 public class BasicMenuBar extends JMenuBar {
-
 	public BasicMenuBar() {
 		
 		newItem = new JMenuItem();
@@ -36,8 +35,46 @@ public class BasicMenuBar extends JMenuBar {
 		this.add(helpMenu);
 		this.add(settingsMenu);
 	}
+	
+		
+	public JMenu getFileMenu() {
+		return fileMenu;
+	}
+	public JMenuItem getNewItem() {
+		return newItem;
+	}
+	public JMenuItem getSaveItem() {
+		return saveItem;
+	}
+	public JMenuItem getWriteItem() {
+		return writeItem;
+	}
+	public JMenu getHelpMenu() {
+		return helpMenu;
+	}
+	public JMenuItem getManualItem() {
+		return manualItem;
+	}
+	public JMenu getSettingsMenu() {
+		return settingsMenu;
+	}
+	public JMenu getLanguageMenu() {
+		return languageMenu;
+	}
+	public JMenuItem getColorItem() {
+		return colorItem;
+	}
+	public JMenuItem getAboutItem() {
+		return aboutItem;
+	}
+	public JMenuItem getEnglishItem() {
+		return englishItem;
+	}
+	public JMenuItem getPolishItem() {
+		return polishItem;
+	}
 
-	JMenuBar menuBar;
+
 	JMenu fileMenu;
 	JMenuItem newItem;
 	JMenuItem saveItem;

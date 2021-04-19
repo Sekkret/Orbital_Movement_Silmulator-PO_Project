@@ -26,6 +26,35 @@ public class DataPanel extends JPanel {
 		this.add(currentReductedMass);
 	}
 	
+	
+	
+	public TitledLabel getCurrentVelocity() {
+		return currentVelocity;
+	}
+	public TitledLabel getCurrentAngularMomentum() {
+		return currentAngularMomentum;
+	}
+	public TitledLabel getCurrentKineticEnergy() {
+		return currentKineticEnergy;
+	}
+	public TitledLabel getCurrentPotential() {
+		return currentPotential;
+	}
+	public TitledLabel getCurrentEffectivePotential() {
+		return currentEffectivePotential;
+	}
+	public TitledLabel getCurrentDistance() {
+		return currentDistance;
+	}
+	public TitledLabel getCurrentEnergy() {
+		return currentEnergy;
+	}
+	public TitledLabel getCurrentReductedMass() {
+		return currentReductedMass;
+	}
+
+
+
 	public TitledLabel currentVelocity;
 	public TitledLabel currentAngularMomentum;
 	public TitledLabel currentKineticEnergy;

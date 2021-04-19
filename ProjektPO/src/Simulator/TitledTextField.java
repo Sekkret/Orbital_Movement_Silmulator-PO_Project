@@ -40,6 +40,16 @@ public class TitledTextField extends JPanel {
 	}
 	
 	
+	public void setTitle(String title) {
+		this.title.setText(title);
+	}
+
+
+	public void setText(String textField) {
+		this.textField.setText(textField);
+	}
+
+
 	JLabel title;
 	JTextField textField;
 	

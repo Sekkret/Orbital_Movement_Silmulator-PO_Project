@@ -10,23 +10,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JSlider;
 
-public class Getters {
-	MainFrame main;
+import Whiteboard.WhiteboardPanel;
+
+public class Getters { //Poprzenosiłem gettery do róznych klas. Nie ma ich nawału w MainFrame, ale też nie kole mnie w oko xdd
+	MainFrame main; //Nie wiem, dlaczego getter dla BasicMenuBar nie działa prawidłowo
 
 	public Getters(MainFrame frame) {
 		main = frame;
-	}
-	
-	public String getLanguageS() {
-		return main.languageS;
-	}
-
-	public String getCountryS() {
-		return main.countryS;
-	}
-	
-	public JButton getStartButton() {
-		return main.startButton;
 	}
 
 	public JMenuItem getNewItem() {
@@ -61,72 +51,4 @@ public class Getters {
 		return main.menuBar.settingsMenu;
 	}
 	
-
-	public JCheckBox getAxisDisplay() {
-		return main.optionPanel.axisDisplay;
-	}
-	public JCheckBox getTrajectoryDisplay() {
-		return main.optionPanel.trajectoryDisplay;
-	}
-	public JCheckBox getVelocityDisplay() {
-
-		return main.optionPanel.velocityDisplay;
-	}
-	public JCheckBox getVelocityComponentsDisplay() {
-		return main.optionPanel.velocityComponentsDisplay;
-	}
-
-	public JLabel getZoomSliderLabel() {
-		return main.optionPanel.zoomSliderLabel;
-	}
-
-	public JLabel getCentralMassInput() {
-		return main.inputPanel.centralMassInput.title;
-	}
-
-	public JLabel  getOrbitingMassInput() {
-		return main.inputPanel.orbitingMassInput.title;
-	}
-
-	public JLabel  getVelocityValueInput() {
-
-		return main.inputPanel.velocityValueInput.title;
-	}
-
-	public JLabel  getVelocityDirectionInput() {
-
-		return main.inputPanel.velocityDirectionInput.title;
-	}
-
-	public JLabel getCurrentVelocity() {
-		return main.dataPanel.currentVelocity.title;
-	}
-
-	public JLabel getCurrentPotential() {
-		return main.dataPanel.currentPotential.title;
-	}
-
-	public JLabel getCurrentKineticEnergy() {
-		return main.dataPanel.currentKineticEnergy.title;
-	}
- 
-	public JLabel getCurrentDistance() {
-		return main.dataPanel.currentDistance.title;
-	}
-
-	public JLabel getCurrentEnergy() {
-		return main.dataPanel.currentEnergy.title;
-	}
-
-	public JLabel getCurrentReductedMass() {
-		return main.dataPanel.currentReductedMass.title;
-	}
-
-	public JLabel getCurrentAngularMomentum() {	
-		return main.dataPanel.currentAngularMomentum.title;
-	}
-
-	public JLabel getCurrentEffectivePotential() {
-		return main.dataPanel.currentEffectivePotential.title;
-	}
 }
