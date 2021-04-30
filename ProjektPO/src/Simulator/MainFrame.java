@@ -117,6 +117,8 @@ public class MainFrame extends JFrame {
 		//tmpAxisManager = new AxisManager();
 		//tmpAxisManager.paint(whiteboardPanel.getDrawingSpace());
 	}
+	
+	
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(
