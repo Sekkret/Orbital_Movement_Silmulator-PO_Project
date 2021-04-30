@@ -22,12 +22,12 @@ public class OptionPanel extends JPanel {
 		zoomSlider = new JSlider();
 		zoomSlider.setMinimum(1);
 		zoomSlider.setMaximum(100);
-		zoomSlider.setMajorTickSpacing(1);
+		zoomSlider.setMajorTickSpacing(10);
 		zoomSlider.setMinorTickSpacing(1);
 		zoomSlider.setPaintTicks(true);
 		zoomSlider.setPaintLabels(true);
 		
-		this.setLayout(new GridLayout(8,1));
+		this.setLayout(new GridLayout(8,1)); 
 		this.add(axisDisplay);
 		this.add(trajectoryDisplay);
 		this.add(velocityDisplay);

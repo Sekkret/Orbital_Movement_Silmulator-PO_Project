@@ -88,3 +88,4 @@ public class BasicMenuBar extends JMenuBar {
 	JMenuItem englishItem;
 	JMenuItem polishItem;
 }
+

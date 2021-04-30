@@ -35,7 +35,7 @@ public class TitledTextField extends JPanel {
 		return title.getText();
 	}
 	
-	String getText() {
+	public String getText() {
 		return textField.getText();
 	}
 	

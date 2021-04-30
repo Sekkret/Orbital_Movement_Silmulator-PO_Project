@@ -12,8 +12,8 @@ import javax.swing.JSlider;
 
 import Whiteboard.WhiteboardPanel;
 
-public class Getters { //Poprzenosi≈Çem gettery do r√≥znych klas. Nie ma ich nawa≈Çu w MainFrame, ale te≈º nie kole mnie w oko xdd
-	MainFrame main; //Nie wiem, dlaczego getter dla BasicMenuBar nie dzia≈Ça prawid≈Çowo
+public class Getters { //Poprzenosi≥em gettery do rÛznych klas. Nie ma ich nawa≥u w MainFrame, ale teø nie kole mnie w oko xdd
+	MainFrame main; //Nie wiem, dlaczego getter dla BasicMenuBar nie dzia≥a prawid≥owo
 
 	public Getters(MainFrame frame) {
 		main = frame;

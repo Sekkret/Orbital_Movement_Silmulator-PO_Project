@@ -8,12 +8,21 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-public class WhiteboardPanel extends JPanel {
+import Equations.Constans;
+import Equations.Trajectory;
 
-	public WhiteboardPanel() {
+public class WhiteboardPanel extends JPanel {
+	Boolean drawTrajectory  = false;
+	Constans constant;
+	public double x,y;
+
+	
+	public WhiteboardPanel(Constans c) {
 		//drawingSpace = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		drawingSpace = null;
 		axes = new AxesManager();
+		constant = c;
+		
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -21,13 +30,22 @@ public class WhiteboardPanel extends JPanel {
 		Graphics2D gc = drawingSpace.createGraphics();
 		gc.translate(this.getWidth()/2, this.getHeight()/2);
 		gc.scale(1,  -1);
-	    gc.setColor(Color.CYAN);
+	    gc.setColor(Color.WHITE);
 	    gc.fillRect(-this.getWidth()/2, -this.getHeight()/2, this.getWidth(), this.getHeight());
 	    gc.setColor(Color.BLACK);
 		Graphics2D g2d = (Graphics2D) g;
+		gc.setColor(Color.blue);
 		g2d.drawImage(drawingSpace, 0, 0, this);
 		axes.paintAxes(g2d, this.getWidth(), this.getHeight());
+		
+		if(drawTrajectory){
+			constant.t.draw(g2d);
+
+		}
+
 	}
+	
+
 	
 	
 	public BufferedImage getDrawingSpace() {
@@ -40,7 +58,11 @@ public class WhiteboardPanel extends JPanel {
 	public AxesManager getAxes() {
 		return axes;
 	}
-	
+	 
+	public void setDrawTrajectory(boolean b) {
+		drawTrajectory = b;
+	}
+
 	public BufferedImage drawingSpace;
 	AxesManager axes;
 

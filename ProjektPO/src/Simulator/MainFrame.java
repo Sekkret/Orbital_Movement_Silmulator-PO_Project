@@ -1,6 +1,7 @@
 package Simulator;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -23,6 +24,7 @@ import javax.swing.SwingUtilities;
 import BundleLanguages.BundleLanguages;
 import Simulator.listeners.*;
 import Whiteboard.WhiteboardPanel;
+import Equations.Constans;
 
 public class MainFrame extends JFrame {
 
@@ -36,8 +38,8 @@ public class MainFrame extends JFrame {
 		countryS = "PL";
 		BundleLanguages bundle = new BundleLanguages(this);
 		
-		
-		whiteboardPanel = new WhiteboardPanel();
+		Constans constants = new Constans(this);
+		whiteboardPanel = new WhiteboardPanel(constants);
 		
 		dataPanel = new DataPanel();
 		
@@ -116,10 +118,14 @@ public class MainFrame extends JFrame {
 
 		//tmpAxisManager = new AxisManager();
 		//tmpAxisManager.paint(whiteboardPanel.getDrawingSpace());
+		
+		
+		startButton.addActionListener(constants.startListener);
 	}
 	
 	
-
+	
+	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(
 				new Runnable() {
@@ -158,7 +164,7 @@ public class MainFrame extends JFrame {
 	//public BasicMenuBar getMenuBar() {
 	//	return menuBar;
 	//}
-	//****CZEMU TO NIE DZIAŁA?!!!****//
+	//****CZEMU TO NIE DZIAĹ�A?!!!****//
 
 	public String getCountryS() {
 		return countryS;
@@ -174,7 +180,7 @@ public class MainFrame extends JFrame {
 	JPanel rightSidePanel;
 	JPanel upperRightPanel;
 	InputPanel inputPanel;
-	JButton startButton;
+	public JButton startButton;
 	OptionPanel optionPanel;
 	
 	JPanel leftSidePanel;

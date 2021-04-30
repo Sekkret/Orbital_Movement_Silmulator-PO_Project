@@ -8,12 +8,12 @@ import javax.swing.JPanel;
 public class InputPanel extends JPanel {
 
 	public InputPanel() {
-		centralMassInput = new TitledTextField("", "100");
-		orbitingMassInput = new TitledTextField("", "20");
-		xValueInput = new TitledTextField("x", "0");
-		yValueInput = new TitledTextField("y", "0");
-		velocityValueInput = new TitledTextField("", "0");
-		velocityDirectionInput = new TitledTextField("", "0");
+		centralMassInput = new TitledTextField("", "10000000");
+		orbitingMassInput = new TitledTextField("", "200000");
+		xValueInput = new TitledTextField("x", "100");
+		yValueInput = new TitledTextField("y", "-10");
+		velocityValueInput = new TitledTextField("", "0.003");
+		velocityDirectionInput = new TitledTextField("", "1.5");
 
 		this.setLayout(new GridLayout(4,2));
 		this.add(centralMassInput);
