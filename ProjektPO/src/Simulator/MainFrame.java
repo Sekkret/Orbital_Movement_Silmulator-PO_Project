@@ -2,30 +2,22 @@ package Simulator;
 
 import java.awt.BorderLayout;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.HeadlessException;
-import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 
 import BundleLanguages.BundleLanguages;
 import Simulator.listeners.*;
+import Whiteboard.Constants;
 import Whiteboard.WhiteboardPanel;
-import Equations.Constans;
 
+@SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 
 	public MainFrame() throws HeadlessException {
@@ -38,8 +30,7 @@ public class MainFrame extends JFrame {
 		countryS = "PL";
 		BundleLanguages bundle = new BundleLanguages(this);
 		
-		Constans constants = new Constans(this);
-		whiteboardPanel = new WhiteboardPanel(constants);
+		whiteboardPanel = new WhiteboardPanel(this);
 		
 		dataPanel = new DataPanel();
 		
@@ -76,8 +67,10 @@ public class MainFrame extends JFrame {
 	 	this.setJMenuBar(menuBar);
 	 	
 	 	//listeners:
-	 	zoomSliderListener = new OptionPanelSliderListener(this);
-	 	optionPanel.zoomSlider.addChangeListener(zoomSliderListener);
+	 	optionPanel.zoomSlider.addChangeListener(new OptionPanelSliderListener(this));
+	 	optionPanel.axisDisplay.addActionListener(new OptionPanelCheckboxShowAxisListener(this));
+	 	optionPanel.trajectoryDisplay.addActionListener(new OptionPanelCheckboxShowTrajectoryListener(this));
+	 	startButton.addActionListener(new StartButtonListener(this));
 	 	
 	 	
 	 	
@@ -115,12 +108,9 @@ public class MainFrame extends JFrame {
 
 		};
 		menuBar.polishItem.addActionListener(polishLanguageListener );
-
-		//tmpAxisManager = new AxisManager();
-		//tmpAxisManager.paint(whiteboardPanel.getDrawingSpace());
 		
 		
-		startButton.addActionListener(constants.startListener);
+		//startButton.addActionListener(constants.startListener);
 	}
 	
 	
@@ -161,10 +151,9 @@ public class MainFrame extends JFrame {
 		return dataPanel;
 	}
 	
-	//public BasicMenuBar getMenuBar() {
-	//	return menuBar;
-	//}
-	//****CZEMU TO NIE DZIAĹ�A?!!!****//
+	public BasicMenuBar getBasicMenuBar() {
+		return menuBar;
+	}
 
 	public String getCountryS() {
 		return countryS;
@@ -192,9 +181,6 @@ public class MainFrame extends JFrame {
 	String countryS;
 	String languageS;
 	
-	
-	//listeners:
-	OptionPanelSliderListener zoomSliderListener;
 	
 	
 

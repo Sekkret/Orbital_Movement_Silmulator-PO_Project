@@ -15,15 +15,25 @@ public class OptionPanel extends JPanel {
 
 	public OptionPanel() {
 		axisDisplay = new JCheckBox();
+		axisDisplay.setSelected(true);
+		axisDisplay.setActionCommand("True");
+		
 		trajectoryDisplay = new JCheckBox();
+		trajectoryDisplay.setSelected(false);
+		trajectoryDisplay.setActionCommand("False");
+		
 		velocityDisplay = new JCheckBox();
+		
 		velocityComponentsDisplay = new JCheckBox();
+		
 		zoomSliderLabel = new JLabel("",JLabel.CENTER);
+		
 		zoomSlider = new JSlider();
-		zoomSlider.setMinimum(1);
-		zoomSlider.setMaximum(100);
-		zoomSlider.setMajorTickSpacing(10);
-		zoomSlider.setMinorTickSpacing(1);
+		zoomSlider.setMinimum(2);
+		zoomSlider.setMaximum(26);
+		zoomSlider.setValue(8);
+		zoomSlider.setMajorTickSpacing(1);
+		//zoomSlider.setMinorTickSpacing(1);
 		zoomSlider.setPaintTicks(true);
 		zoomSlider.setPaintLabels(true);
 		
