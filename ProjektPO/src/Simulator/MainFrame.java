@@ -6,11 +6,14 @@ import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+
 
 import BundleLanguages.BundleLanguages;
 import Simulator.listeners.*;
@@ -30,18 +33,22 @@ public class MainFrame extends JFrame {
 		countryS = "PL";
 		BundleLanguages bundle = new BundleLanguages(this);
 		
-		whiteboardPanel = new WhiteboardPanel(this);
+		
 		
 		dataPanel = new DataPanel();
 		
 		leftSidePanel = new JPanel();
 		leftSidePanel.setLayout(new BorderLayout());
-		leftSidePanel.add(whiteboardPanel, BorderLayout.CENTER);
+	
 		leftSidePanel.add(dataPanel, BorderLayout.SOUTH);
 		
 
 		
 		inputPanel = new InputPanel();
+		
+		whiteboardPanel = new WhiteboardPanel(this);
+		leftSidePanel.add(whiteboardPanel, BorderLayout.CENTER);
+		
 		startButton = new JButton("START");
 		upperRightPanel = new JPanel();
 		upperRightPanel.setLayout(new BorderLayout());
@@ -122,6 +129,7 @@ public class MainFrame extends JFrame {
 					public void run() {
 						MainFrame mainFrame = new MainFrame();
 						mainFrame.setVisible(true);
+						
 					}
 				}
 		);

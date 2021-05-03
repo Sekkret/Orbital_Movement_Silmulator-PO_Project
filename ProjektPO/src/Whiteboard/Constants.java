@@ -1,10 +1,16 @@
 package Whiteboard;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
 import Simulator.MainFrame;
 
 public class Constants {
+	ScheduledExecutorService scheduler;
+	AnimationManager animation;
 	double mi, m, M, alpha, L, r_p, v, fi_0, x, y, theta, v_fi, v_r, E, epsilon, P, newfi, newr;
 	final static double G = 6.6743015 * Math.pow(10, -11);
 	MainFrame frame;
@@ -12,7 +18,6 @@ public class Constants {
 	//public Trajectory t;
 	
 	public Constants(MainFrame f) {
-		
 	frame = f;
 	//t = new Trajectory(this);	
 		
@@ -53,7 +58,21 @@ public class Constants {
     	 
     	 newfi = fi_0;
     	 newr = r_p;
+    	 
+    	animation = new AnimationManager(this);
+    	scheduler = Executors.newScheduledThreadPool(1);
+		scheduler.scheduleAtFixedRate(animation, 0, 1, MILLISECONDS);
+
+
 	}
-		
+	public AnimationManager getAnimationManager(){
+		return animation;
+	}
+	
+	public ScheduledExecutorService getScheduler(){
+		return scheduler;
+	}
+
+	
 
 }

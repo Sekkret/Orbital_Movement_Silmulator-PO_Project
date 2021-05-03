@@ -29,9 +29,9 @@ public class OptionPanel extends JPanel {
 		zoomSliderLabel = new JLabel("",JLabel.CENTER);
 		
 		zoomSlider = new JSlider();
-		zoomSlider.setMinimum(2);
-		zoomSlider.setMaximum(26);
-		zoomSlider.setValue(8);
+		zoomSlider.setMinimum(1);
+		zoomSlider.setMaximum(10);
+		zoomSlider.setValue(2);
 		zoomSlider.setMajorTickSpacing(1);
 		//zoomSlider.setMinorTickSpacing(1);
 		zoomSlider.setPaintTicks(true);

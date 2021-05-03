@@ -17,12 +17,11 @@ public class WhiteboardPanel extends JPanel {
 	public WhiteboardPanel(MainFrame frame) {
 		this.frame = frame;
 		drawingSpace = null;
-		axes = new AxesManager(8);
-		trajectory = new TrajectoryManager(frame);
-		
-		
+		axes = new AxesManager(2);
+		trajectory = new TrajectoryManager(frame);		
 		basicStroke = new BasicStroke(2);
-		
+		x =100;
+		y = Integer.parseInt(frame.getInputPanel().getyValueInput().getText());
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -37,7 +36,7 @@ public class WhiteboardPanel extends JPanel {
 		
 	    //And here we set coordinates system and basic settings to Stroke
 	    Graphics2D g2d = (Graphics2D) g;
-		gc.setColor(Color.blue);
+	   
 		g2d.drawImage(drawingSpace, 0, 0, this);
 		g2d.translate(this.getWidth()/2, this.getHeight()/2);
 		g2d.scale(1, -1);
@@ -49,12 +48,18 @@ public class WhiteboardPanel extends JPanel {
 			axes.paintAxes(g2d, this.getWidth(), this.getHeight());
 		
 		if(drawTrajectory){
+			
 			g2d.scale((this.getWidth()/5)/Math.pow(10, axes.getZoom()), (this.getHeight()/5)/Math.pow(10, axes.getZoom()));
 			//well, thats complicated. on big zooms, it means slider is on the lef side, drawn line was THICK
 			g2d.setStroke(new BasicStroke((int) (3/((this.getWidth()/5)/Math.pow(10, axes.getZoom())))));
 			trajectory.draw(g2d);
 			g2d.scale(1/((this.getWidth()/5)/Math.pow(10, axes.getZoom())), 1/((this.getHeight()/5)/Math.pow(10, axes.getZoom())));
 
+		}
+		if(drawAnimation) {
+			g2d.scale((this.getWidth()/5)/Math.pow(10, axes.getZoom()), (this.getHeight()/5)/Math.pow(10, axes.getZoom()));
+			g2d.setColor(Color.blue);
+			g2d.fillOval((int)( x- Math.pow(10, axes.getZoom())/20) ,(int)( y- Math.pow(10, axes.getZoom())/20), (int) Math.pow(10, axes.getZoom())/10, (int) Math.pow(10, axes.getZoom())/10);
 		}
 
 	}
@@ -68,6 +73,10 @@ public class WhiteboardPanel extends JPanel {
 	
 	public BufferedImage getDrawingSpace() {
 		return drawingSpace;
+	}
+	
+	public TrajectoryManager getTrajectory() {
+		return trajectory;
 	}
 	
 	public void setDrawingSpace(BufferedImage newSpace) {
@@ -89,6 +98,11 @@ public class WhiteboardPanel extends JPanel {
 	}
 
 	
+	public void setDrawAnimation(boolean drawAnimation) {
+		this.drawAnimation = drawAnimation;
+	}
+
+
 	MainFrame frame;
 
 	public BufferedImage drawingSpace;
@@ -96,6 +110,7 @@ public class WhiteboardPanel extends JPanel {
 	TrajectoryManager trajectory;
 	
 	boolean drawTrajectory  = false;
+	boolean drawAnimation  = false;
 	boolean drawAxes = true;
 	public double x,y;
 	

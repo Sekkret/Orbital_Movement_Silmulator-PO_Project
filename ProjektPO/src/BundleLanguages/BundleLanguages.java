@@ -4,11 +4,13 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import Simulator.MainFrame;
+import Simulator.listeners.StartButtonListener;
 
 public class BundleLanguages {
 //Bartosz Skura
 	public BundleLanguages(MainFrame frame) {
 		main = frame;
+		startListener = new StartButtonListener(main);
 		}
 	
 	public void changeLanguage() {
@@ -24,7 +26,7 @@ public class BundleLanguages {
 		main.getBasicMenuBar().getColorItem().setText(rBundle.getString("color"));
 		main.getBasicMenuBar().getLanguageMenu().setText(rBundle.getString("language"));
 		main.getBasicMenuBar().getSettingsMenu().setText(rBundle.getString("settings"));
-        main.getStartButton().setText( rBundle.getString("startButton"));
+        main.getStartButton().setText( rBundle.getString((startListener.getReset())?"startButton":"reset"));
         main.getOptionPanel().getAxisDisplay().setText(rBundle.getString("axisDisplay"));
         main.getOptionPanel().getTrajectoryDisplay().setText( rBundle.getString("trajectoryDisplay"));
         main.getOptionPanel().getVelocityDisplay().setText( rBundle.getString("velocityDisplay"));
@@ -44,4 +46,5 @@ public class BundleLanguages {
         main.getDataPanel().getCurrentAngularMomentum().setTitle(rBundle.getString("currentAngularMomentum"));
 	}
 	MainFrame main;
+	StartButtonListener startListener;
 }

@@ -32,8 +32,8 @@ public class AxesManager {
 			g.drawLine(i*width/10, 10, i*width/10, -10);
 			g.drawLine(10, i*height/10, -10, i*height/10);
 			if(i!=0) {
-				g.drawString(String.valueOf(i), i*width/10-5, -18);
-				g.drawString(String.valueOf(i), 15, i*height/10);
+				g.drawString(String.valueOf((double)i/2), i*width/10-5, -18);
+				g.drawString(String.valueOf((double)-i/2), 15, i*height/10);
 			}
 		}
 		g.drawString("0", 5, -5);

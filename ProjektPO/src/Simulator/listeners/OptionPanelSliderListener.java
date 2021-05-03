@@ -13,7 +13,7 @@ public class OptionPanelSliderListener implements ChangeListener {
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		source.getWhiteboardPanel().getAxes().setZoom( (double) source.getOptionPanel().getZoomSlider().getValue()/2   );
+		source.getWhiteboardPanel().getAxes().setZoom( (double) source.getOptionPanel().getZoomSlider().getValue()   );
 		source.getWhiteboardPanel().repaint();
 	}
 	
