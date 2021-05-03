@@ -62,7 +62,7 @@ public class Constants {
     	animation = new AnimationManager(this);
     	scheduler = Executors.newScheduledThreadPool(1);
 		scheduler.scheduleAtFixedRate(animation, 0, 1, MILLISECONDS);
-
+        
 
 	}
 	public AnimationManager getAnimationManager(){
