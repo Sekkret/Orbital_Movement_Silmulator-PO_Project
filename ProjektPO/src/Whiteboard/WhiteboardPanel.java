@@ -20,7 +20,7 @@ public class WhiteboardPanel extends JPanel {
 		axes = new AxesManager(2);
 		trajectory = new TrajectoryManager(frame);		
 		basicStroke = new BasicStroke(2);
-		x =100;
+		x =Integer.parseInt(frame.getInputPanel().getxValueInput().getText());
 		y = Integer.parseInt(frame.getInputPanel().getyValueInput().getText());
 	}
 	
