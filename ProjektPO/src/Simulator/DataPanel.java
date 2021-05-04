@@ -1,6 +1,7 @@
 package Simulator;
 
 import java.awt.GridLayout;
+
 import javax.swing.JPanel;
 
 public class DataPanel extends JPanel {

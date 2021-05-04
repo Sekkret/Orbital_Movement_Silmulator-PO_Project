@@ -1,10 +1,5 @@
 package Whiteboard;
 
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
-
-
-import java.util.concurrent.ScheduledExecutorService;
-
 import javax.swing.SwingUtilities;
 
 public class AnimationManager implements Runnable {

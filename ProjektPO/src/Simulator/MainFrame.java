@@ -1,7 +1,6 @@
 package Simulator;
 
 import java.awt.BorderLayout;
-
 import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -14,11 +13,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-
-
 import BundleLanguages.BundleLanguages;
-import Simulator.listeners.*;
-import Whiteboard.Constants;
+import Simulator.listeners.OptionPanelCheckboxShowAxisListener;
+import Simulator.listeners.OptionPanelCheckboxShowTrajectoryListener;
+import Simulator.listeners.OptionPanelSliderListener;
+import Simulator.listeners.StartButtonListener;
 import Whiteboard.WhiteboardPanel;
 
 @SuppressWarnings("serial")
@@ -32,7 +31,8 @@ public class MainFrame extends JFrame {
 		this.addWindowListener(new WindowAdapter(){
 			@Override
 		    public void windowClosing(WindowEvent windowEvent) {
-				whiteboardPanel.getTrajectory().getConstants().getScheduler().shutdown();
+				if(startButton.getText()=="RESET")
+					whiteboardPanel.getTrajectory().getConstants().getScheduler().shutdown();
 				System.exit(0);
 		    }
 		});

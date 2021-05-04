@@ -1,7 +1,6 @@
 package Simulator;
 
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 
 import javax.swing.JPanel;
 

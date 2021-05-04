@@ -1,15 +1,11 @@
 package Simulator;
 
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
-import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 public class OptionPanel extends JPanel {
 

@@ -2,7 +2,6 @@ package Simulator;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
