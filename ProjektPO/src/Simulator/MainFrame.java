@@ -61,7 +61,7 @@ public class MainFrame extends JFrame {
 		rightSidePanel.setLayout(new BorderLayout());
 		rightSidePanel.add(upperRightPanel, BorderLayout.CENTER);
 		rightSidePanel.add(optionPanel, BorderLayout.SOUTH);
-		rightSidePanel.setPreferredSize(new Dimension(240,600));
+		
 		
 		
 		

@@ -11,39 +11,21 @@ import Simulator.MainFrame;
 public class Constants {
 	ScheduledExecutorService scheduler;
 	AnimationManager animation;
-	double mi, m, M, alpha, L, r_p, v, fi_0, x, y, theta, v_fi, v_r, E, epsilon, P, newfi, newr;
+	double mi, m, M, alpha, L, r_p, v, fi_0, x, y, theta, v_fi, v_r, E, epsilon, P, newfi, newr, fi_p;
 	final static double G = 6.6743015 * Math.pow(10, -11);
 	MainFrame frame;
-	//public ActionListener startListener;
-	//public Trajectory t;
 	
 	public Constants(MainFrame f) {
 	frame = f;
-	//t = new Trajectory(this);	
-		
-		/*startListener = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-        	 
-        	 frame.getDataPanel().getCurrentReductedMass().setLabel(Double.toString(mi));
-        	 frame.getDataPanel().getCurrentAngularMomentum().setLabel(Double.toString(L));  
-        	 frame.getDataPanel().getCurrentEnergy().setLabel(Double.toString(E));
-        	 
-        	 t.trajectory();
-        	 frame.getWhiteboardPanel().setDrawTrajectory(true);
-        	 frame.getWhiteboardPanel().repaint();
-        		
-		}	
-		};*/
-			
+	
 	} 
 	public void calculate() {
-		 m = Double.parseDouble(frame.getInputPanel().getOrbitingMassInput().getText()); //kg
-    	 M = Double.parseDouble(frame.getInputPanel().getCentralMassInput().getText()); //kg
-    	 v = Double.parseDouble(frame.getInputPanel().getVelocityValueInput().getText());  //m/s
-    	 theta = Double.parseDouble(frame.getInputPanel().getVelocityDirectionInput().getText()); //deg 
-    	 x = Double.parseDouble(frame.getInputPanel().getxValueInput().getText()); //m
-    	 y = Double.parseDouble(frame.getInputPanel().getyValueInput().getText()); //m 
+		 m = Double.parseDouble(frame.getInputPanel().getOrbitingMassInput().getText()); 
+    	 M = Double.parseDouble(frame.getInputPanel().getCentralMassInput().getText()); 
+    	 v = Double.parseDouble(frame.getInputPanel().getVelocityValueInput().getText()); 
+    	 theta = Math.PI/180*Double.parseDouble(frame.getInputPanel().getVelocityDirectionInput().getText());  
+    	 x = Double.parseDouble(frame.getInputPanel().getxValueInput().getText()); 
+    	 y = Double.parseDouble(frame.getInputPanel().getyValueInput().getText()); 
     	 alpha = M*m*G;
     	 
     	 fi_0 = (x>=0)?Math.atan(y/x): Math.atan(y/x)+ Math.PI;
@@ -55,9 +37,14 @@ public class Constants {
     	 E = mi/2 * ( v_r*v_r + v_fi*v_fi) - alpha/r_p;
     	 epsilon = Math.sqrt(1 + 2 * E * L * L /mi /alpha /alpha);
     	 P = L * L /mi /alpha;
+    	 fi_p = Math.acos((P-r_p)/epsilon/r_p)-fi_0;
     	 
     	 newfi = fi_0;
     	 newr = r_p;
+    	 
+    	 frame.getDataPanel().getCurrentReductedMass().setLabel(Double.toString(mi));
+    	 frame.getDataPanel().getCurrentEnergy().setLabel(Double.toString(E));
+    	 frame.getDataPanel().getCurrentAngularMomentum().setLabel(Double.toString(L));
     	 
     	animation = new AnimationManager(this);
     	scheduler = Executors.newScheduledThreadPool(1);
