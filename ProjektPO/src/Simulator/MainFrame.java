@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
@@ -26,8 +27,15 @@ public class MainFrame extends JFrame {
 	public MainFrame() throws HeadlessException {
 		
 		this.setSize(960, 600);
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setTitle("Symulacja BETA");
+		this.addWindowListener(new WindowAdapter(){
+			@Override
+		    public void windowClosing(WindowEvent windowEvent) {
+				whiteboardPanel.getTrajectory().getConstants().getScheduler().shutdown();
+				System.exit(0);
+		    }
+		});
 		
 		languageS = "pl";
 		countryS = "PL";

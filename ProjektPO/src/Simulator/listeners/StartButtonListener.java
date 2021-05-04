@@ -23,7 +23,7 @@ public class StartButtonListener implements ActionListener {
 		}
 		else {
 			frame.getStartButton().setText("START");
-			frame.getWhiteboardPanel().getTrajectory().getConstans().getScheduler().shutdown();
+			frame.getWhiteboardPanel().getTrajectory().getConstants().getScheduler().shutdown();
 			reset = true;
 		}
 	}

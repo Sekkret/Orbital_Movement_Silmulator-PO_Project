@@ -43,7 +43,7 @@ public class TrajectoryManager {
 		}
 
      }
-	 public Constants getConstans() {
+	 public Constants getConstants() {
 		 return cons;
 	 }
 	 
