@@ -157,7 +157,7 @@ public class MainFrame extends JFrame {
 						inputPanel.velocityDirectionInput.setText("57");	
 						dataPanel.currentDistance.setLabel("0");
 						dataPanel.currentEffectivePotential.setLabel("0");
-						dataPanel.currentEnergy.setLabel("0");
+						dataPanel.currentEnergy.setLabel("0");					
 						dataPanel.currentKineticEnergy.setLabel("0");
 						dataPanel.currentPotential.setLabel("0");
 						dataPanel.currentReductedMass.setLabel("0");
