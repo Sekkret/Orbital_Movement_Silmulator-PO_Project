@@ -1,7 +1,9 @@
 package Simulator;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -16,8 +19,11 @@ import javax.swing.SwingUtilities;
 import BundleLanguages.BundleLanguages;
 import Simulator.listeners.OptionPanelCheckboxShowAxisListener;
 import Simulator.listeners.OptionPanelCheckboxShowTrajectoryListener;
+import Simulator.listeners.OptionPanelCheckboxShowVelocity;
+import Simulator.listeners.OptionPanelCheckboxShowVelocityComponents;
 import Simulator.listeners.OptionPanelSliderListener;
 import Simulator.listeners.StartButtonListener;
+import Whiteboard.TrajectoryManager;
 import Whiteboard.WhiteboardPanel;
 
 @SuppressWarnings("serial")
@@ -85,7 +91,11 @@ public class MainFrame extends JFrame {
 	 	optionPanel.zoomSlider.addChangeListener(new OptionPanelSliderListener(this));
 	 	optionPanel.axisDisplay.addActionListener(new OptionPanelCheckboxShowAxisListener(this));
 	 	optionPanel.trajectoryDisplay.addActionListener(new OptionPanelCheckboxShowTrajectoryListener(this));
-	 	startButton.addActionListener(new StartButtonListener(this));
+	 	optionPanel.velocityComponentsDisplay.addActionListener(new OptionPanelCheckboxShowVelocityComponents(this));
+	 	optionPanel.velocityDisplay.addActionListener(new OptionPanelCheckboxShowVelocity(this));
+	 	startListener = new StartButtonListener(this);
+	 	startButton.addActionListener(getStartListener());
+	 	
 	 	
 	 	
 	 	
@@ -117,12 +127,56 @@ public class MainFrame extends JFrame {
 				languageS = "pl";
 				countryS = "PL";
 				bundle.changeLanguage();
-
 			}
-
-
 		};
 		menuBar.polishItem.addActionListener(polishLanguageListener );
+		
+		ActionListener colorListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				whiteboardPanel.setNewColor(JColorChooser.showDialog(null, "Hello", Color.blue));
+				whiteboardPanel.repaint();
+			}	
+		};
+		menuBar.colorItem.addActionListener(colorListener);
+		
+		ActionListener newListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(startListener.getReset()==false) {
+					startButton.doClick(1);
+				}
+				SwingUtilities.invokeLater(new Runnable(){
+					@Override
+					public void run() {
+						inputPanel.xValueInput.setText("160");
+						inputPanel.yValueInput.setText("30");
+						inputPanel.centralMassInput.setText("10000000000000");
+						inputPanel.orbitingMassInput.setText("20000000000000000");
+						inputPanel.velocityValueInput.setText("80");
+						inputPanel.velocityDirectionInput.setText("57");	
+						dataPanel.currentDistance.setLabel("0");
+						dataPanel.currentEffectivePotential.setLabel("0");
+						dataPanel.currentEnergy.setLabel("0");
+						dataPanel.currentKineticEnergy.setLabel("0");
+						dataPanel.currentPotential.setLabel("0");
+						dataPanel.currentReductedMass.setLabel("0");
+						dataPanel.currentVelocity.setLabel("0");
+						dataPanel.currentAngularMomentum.setLabel("0");
+						whiteboardPanel.setDrawAnimation(false);
+						for(double ii = 0; ii < 62832; ii++) {
+							whiteboardPanel.getTrajectory().getR()[(int) ii] =0;
+							whiteboardPanel.getTrajectory().getX()[(int) ii] = 0;
+							whiteboardPanel.getTrajectory().getY()[(int) ii] = 0;
+						}
+						whiteboardPanel.repaint();
+						}
+					});
+				
+				}
+			
+		};
+		menuBar.newItem.addActionListener(newListener);
 		
 		
 		//startButton.addActionListener(constants.startListener);
@@ -182,10 +236,17 @@ public class MainFrame extends JFrame {
 
 
 
+	public StartButtonListener getStartListener() {
+		return startListener;
+	}
+
+
+
+
 	JPanel rightSidePanel;
 	JPanel upperRightPanel;
-	InputPanel inputPanel;
-	public JButton startButton;
+	public InputPanel inputPanel;
+	JButton startButton;
 	OptionPanel optionPanel;
 	
 	JPanel leftSidePanel;
@@ -196,7 +257,7 @@ public class MainFrame extends JFrame {
 	BasicMenuBar menuBar;
 	String countryS;
 	String languageS;
-	
+	StartButtonListener startListener;
 	
 	
 

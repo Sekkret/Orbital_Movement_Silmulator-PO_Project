@@ -15,11 +15,12 @@ public class StartButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(getReset()) {
+			
 			frame.getWhiteboardPanel().setDrawAnimation(true);
 			frame.getWhiteboardPanel().refresh();
 			frame.getWhiteboardPanel().repaint();
 			reset = false;
-			frame.getStartButton().setText("RESET");
+			frame.getStartButton().setText("STOP");
 		}
 		else {
 			frame.getStartButton().setText("START");
@@ -31,6 +32,7 @@ public class StartButtonListener implements ActionListener {
 	public boolean getReset() {
 		return reset;
 	}
+	
 
 	MainFrame frame;
 	boolean reset;

@@ -2,6 +2,7 @@ package Simulator;
 
 import java.awt.GridLayout;
 
+import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,17 +20,20 @@ public class OptionPanel extends JPanel {
 		trajectoryDisplay.setActionCommand("False");
 		
 		velocityDisplay = new JCheckBox();
+		velocityDisplay.setSelected(false);
+		velocityDisplay.setActionCommand("False");	
 		
 		velocityComponentsDisplay = new JCheckBox();
+		velocityComponentsDisplay.setSelected(false);
+		velocityComponentsDisplay.setActionCommand("False");
 		
 		zoomSliderLabel = new JLabel("",JLabel.CENTER);
 		
 		zoomSlider = new JSlider();
 		zoomSlider.setMinimum(1);
-		zoomSlider.setMaximum(10);
+		zoomSlider.setMaximum(6);
 		zoomSlider.setValue(2);
 		zoomSlider.setMajorTickSpacing(1);
-		//zoomSlider.setMinorTickSpacing(1);
 		zoomSlider.setPaintTicks(true);
 		zoomSlider.setPaintLabels(true);
 		
@@ -75,5 +79,6 @@ public class OptionPanel extends JPanel {
 	JCheckBox velocityComponentsDisplay;
 	JLabel zoomSliderLabel;
 	JSlider zoomSlider;
+	
 	
 }

@@ -9,7 +9,8 @@ import Simulator.MainFrame;
 public class TrajectoryManager {
 	MainFrame frame;
 	Constants cons;
-	int[] x, y;
+	int[] x;
+	int[] y;
 	double[] r;
 	
 	public TrajectoryManager(MainFrame frame) {
@@ -24,9 +25,9 @@ public class TrajectoryManager {
 	public void calculateTrajectory() {
 		cons.calculate();
 		for(double ii = 0; ii < 62832; ii++) {
-			r[(int) ii] = cons.P/(1 + cons.epsilon * Math.cos(ii/10000 + Math.acos((cons.P-cons.r_p)/cons.epsilon/cons.r_p)-cons.fi_0));
-			x[(int) ii] = (int) (r[(int) ii]  * Math.cos(ii/10000));
-			y[(int) ii] = (int) (r[(int) ii] * Math.sin(ii/10000));
+			getR()[(int) ii] = cons.P/(1 + cons.epsilon * Math.cos(ii/10000 - cons.fi_p));
+			getX()[(int) ii] = (int) (getR()[(int) ii]  * Math.cos(ii/10000));
+			getY()[(int) ii] = (int) (getR()[(int) ii] * Math.sin(ii/10000));
 		}
 		
 	}
@@ -35,10 +36,10 @@ public class TrajectoryManager {
 		 for(int ii = 0; ii < 62832	; ii++) {
 			 g2d.setColor(Color.black);
 			 if(ii>0) {
-				 if(r[(int) ii]<0 ||r[(int) ii-1]<0) {
+				 if(getR()[(int) ii]<0 ||getR()[(int) ii-1]<0) {
 					 continue;
 				 }
-				 g2d.draw(new Line2D.Float(x[ii], y[ii], x[ii-1], y[ii-1]));
+				 g2d.draw(new Line2D.Float(getX()[ii], getY()[ii], getX()[ii-1], getY()[ii-1]));
 			 }
 		}
 
@@ -46,6 +47,20 @@ public class TrajectoryManager {
 	 public Constants getConstants() {
 		 return cons;
 	 }
+
+	public double[] getR() {
+		return r;
+	}
+
+	public int[] getY() {
+		return y;
+	}
+
+	public int[] getX() {
+		return x;
+	}
+
+
 	 
 
 }

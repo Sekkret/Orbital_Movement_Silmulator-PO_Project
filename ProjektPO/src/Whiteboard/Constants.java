@@ -36,8 +36,38 @@ public class Constants {
     	 E = mi/2 * ( v_r*v_r + v_fi*v_fi) - alpha/r_p;
     	 epsilon = Math.sqrt(1 + 2 * E * L * L /mi /alpha /alpha);
     	 P = L * L /mi /alpha;
-    	 fi_p = Math.acos((P-r_p)/epsilon/r_p)-fi_0;
-    	 
+    	 if((180/Math.PI*fi_0>= 0 && 180/Math.PI*fi_0< 90)) {
+    		 if((180/Math.PI*theta>= (180/Math.PI*fi_0-90) && 180/Math.PI*theta<180/Math.PI*fi_0)||(180/Math.PI*theta>= (180/Math.PI*fi_0+90) && 180/Math.PI*theta<180/Math.PI*fi_0+180)){
+    			 fi_p = Math.acos((P-r_p)/epsilon/r_p)+fi_0;
+    		 }
+    		 else {
+    			 fi_p = -Math.acos((P-r_p)/epsilon/r_p)+fi_0 ;
+    		 }
+    	 }
+    	 else if((180/Math.PI*fi_0>= 90 && 180/Math.PI*fi_0<180)) {
+    		 if((180/Math.PI*theta>= -90 && 180/Math.PI*theta<180/Math.PI*fi_0-180)||(180/Math.PI*theta>=180/Math.PI*fi_0-90 && 180/Math.PI*theta<180/Math.PI*fi_0)||(180/Math.PI*theta>=180/Math.PI*fi_0+90 && 180/Math.PI*theta<=270)){
+    			 fi_p = Math.acos((P-r_p)/epsilon/r_p)+fi_0;
+    		 }
+    		 else {
+    			 fi_p = -Math.acos((P-r_p)/epsilon/r_p)+fi_0 ;
+    		 }
+    	 }
+    	 else if((180/Math.PI*fi_0>=180 && 180/Math.PI*fi_0<270)) {
+    		 if((180/Math.PI*theta>= 180/Math.PI*fi_0-270 && 180/Math.PI*theta<180/Math.PI*fi_0-180)||(180/Math.PI*theta>=180/Math.PI*fi_0-90 && 180/Math.PI*theta<180/Math.PI*fi_0)){
+    			 fi_p = Math.acos((P-r_p)/epsilon/r_p)+fi_0;
+    		 }
+    		 else {
+    			 fi_p = -Math.acos((P-r_p)/epsilon/r_p)+fi_0 ;
+    		 }
+    	 }
+    	 else if((180/Math.PI*fi_0>= -90 && 180/Math.PI*fi_0<0)) {
+    		 if((180/Math.PI*theta>= -90 && 180/Math.PI*theta<180/Math.PI*fi_0)||(180/Math.PI*theta>=180/Math.PI*fi_0+90 && 180/Math.PI*theta<180/Math.PI*fi_0+180)||(180/Math.PI*theta>=180/Math.PI*fi_0+270 && 180/Math.PI*theta<=270)){
+    			 fi_p = Math.acos((P-r_p)/epsilon/r_p)+fi_0;
+    		 }
+    		 else {
+    			 fi_p = -Math.acos((P-r_p)/epsilon/r_p)+fi_0 ;
+    		 }
+    	 }
     	 newfi = fi_0;
     	 newr = r_p;
     	 

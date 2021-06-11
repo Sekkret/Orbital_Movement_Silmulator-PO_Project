@@ -15,6 +15,7 @@ public class WhiteboardPanel extends JPanel {
 
 	
 	public WhiteboardPanel(MainFrame frame) {
+		newColor=Color.WHITE;
 		this.frame = frame;
 		drawingSpace = null;
 		axes = new AxesManager(2);
@@ -30,7 +31,7 @@ public class WhiteboardPanel extends JPanel {
 		Graphics2D gc = drawingSpace.createGraphics();
 		gc.translate(this.getWidth()/2, this.getHeight()/2);
 		gc.scale(1,  -1);
-	    gc.setColor(Color.WHITE);
+	    gc.setColor(newColor);
 	    gc.fillRect(-this.getWidth()/2, -this.getHeight()/2, this.getWidth(), this.getHeight());
 	    gc.setColor(Color.BLACK);
 		
@@ -47,10 +48,9 @@ public class WhiteboardPanel extends JPanel {
 		if (drawAxes)
 			axes.paintAxes(g2d, this.getWidth(), this.getHeight());
 		
-		if(drawTrajectory){
-			
+		if(drawTrajectory){		
 			g2d.scale((this.getWidth()/5)/Math.pow(10, axes.getZoom()), (this.getHeight()/5)/Math.pow(10, axes.getZoom()));
-			//well, thats complicated. on big zooms, it means slider is on the lef side, drawn line was THICK
+			//well, thats complicated. on big zooms, it means slider is on the left side, drawn line was THICK
 			g2d.setStroke(new BasicStroke((int) (3/((this.getWidth()/5)/Math.pow(10, axes.getZoom())))));
 			trajectory.draw(g2d);
 			g2d.scale(1/((this.getWidth()/5)/Math.pow(10, axes.getZoom())), 1/((this.getHeight()/5)/Math.pow(10, axes.getZoom())));
@@ -58,10 +58,20 @@ public class WhiteboardPanel extends JPanel {
 		}
 		if(drawAnimation) {
 			g2d.scale((this.getWidth()/5)/Math.pow(10, axes.getZoom()), (this.getHeight()/5)/Math.pow(10, axes.getZoom()));
-			g2d.setColor(Color.blue);
+			g2d.setColor(Color.blue);			
 			g2d.fillOval((int)( x- Math.pow(10, axes.getZoom())/20) ,(int)( y- Math.pow(10, axes.getZoom())/20), (int) Math.pow(10, axes.getZoom())/10, (int) Math.pow(10, axes.getZoom())/10);
+			if(drawVelocityComponets) {
+				g2d.setColor(Color.green);
+				g2d.drawLine((int) x, (int) y,(int)(x+trajectory.cons.animation.vx),(int)y);
+				g2d.drawLine((int) x, (int) y,(int) x,(int)(y+trajectory.cons.animation.vy));
+			}
+			if(drawVelocity) {
+				g2d.setColor(Color.red);
+				g2d.drawLine((int) x, (int) y,(int)(x+trajectory.cons.animation.vx),(int)(y+trajectory.cons.animation.vy));
+			}
+			
 		}
-
+		
 	}
 	//This function runs for example after clicking the start button. It update data in WhiteboarPanel, e.g:
 	public void refresh() {
@@ -101,18 +111,39 @@ public class WhiteboardPanel extends JPanel {
 	public void setDrawAnimation(boolean drawAnimation) {
 		this.drawAnimation = drawAnimation;
 	}
+	
+	public void setDrawVelocityComponets(boolean drawVelocityComponets) {
+		this.drawVelocityComponets = drawVelocityComponets;
+	}
+	
+	public void setDrawVelocity(boolean drawVelocity) {
+		this.drawVelocity = drawVelocity;
+	}
+
+
+	
+
+	public void setNewColor(Color newColor) {
+		this.newColor = newColor;
+	}
+
+
 
 
 	MainFrame frame;
 
-	public BufferedImage drawingSpace;
+	BufferedImage drawingSpace;
 	AxesManager axes;
 	TrajectoryManager trajectory;
+	
 	
 	boolean drawTrajectory  = false;
 	boolean drawAnimation  = false;
 	boolean drawAxes = true;
-	public double x,y;
+	boolean drawVelocityComponets = false;
+	boolean drawVelocity = false;
+	double x,y;
+	Color newColor;
 	
 	BasicStroke basicStroke;
 
