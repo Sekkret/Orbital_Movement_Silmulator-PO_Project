@@ -164,6 +164,7 @@ public class MainFrame extends JFrame {
 						dataPanel.currentVelocity.setLabel("0");
 						dataPanel.currentAngularMomentum.setLabel("0");
 						whiteboardPanel.setDrawAnimation(false);
+						
 						for(double ii = 0; ii < 62832; ii++) {
 							whiteboardPanel.getTrajectory().getR()[(int) ii] =0;
 							whiteboardPanel.getTrajectory().getX()[(int) ii] = 0;
