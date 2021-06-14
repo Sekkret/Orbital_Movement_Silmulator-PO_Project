@@ -8,8 +8,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import Simulator.MainFrame;
 
 public class Constants {
-	ScheduledExecutorService scheduler;
-	AnimationManager animation;
+	//ScheduledExecutorService scheduler;
+	//AnimationManager animation;
 	double mi, m, M, alpha, L, r_p, v, fi_0, x, y, theta, v_fi, v_r, E, epsilon, P, newfi, newr, fi_p;
 	final static double G = 6.6743015 * Math.pow(10, -11);
 	MainFrame frame;
@@ -75,19 +75,19 @@ public class Constants {
     	 frame.getDataPanel().getCurrentEnergy().setLabel(Double.toString(E));
     	 frame.getDataPanel().getCurrentAngularMomentum().setLabel(Double.toString(L));
     	 
-    	animation = new AnimationManager(this);
-    	scheduler = Executors.newScheduledThreadPool(1);
-		scheduler.scheduleAtFixedRate(animation, 0, 1, MILLISECONDS);
+    	//animation = new AnimationManager(this);
+    	//scheduler = Executors.newScheduledThreadPool(1);
+		//scheduler.scheduleAtFixedRate(animation, 0, 1, MILLISECONDS);
         
 
 	}
-	public AnimationManager getAnimationManager(){
+	/*public AnimationManager getAnimationManager(){
 		return animation;
 	}
 	
 	public ScheduledExecutorService getScheduler(){
 		return scheduler;
-	}
+	}*/
 
 	
 

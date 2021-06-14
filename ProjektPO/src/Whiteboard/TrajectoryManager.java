@@ -3,6 +3,7 @@ package Whiteboard;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
+import java.io.StringWriter;
 
 import Simulator.MainFrame;
 
@@ -12,6 +13,7 @@ public class TrajectoryManager {
 	int[] x;
 	int[] y;
 	double[] r;
+	StringWriter stringWriter;
 	
 	public TrajectoryManager(MainFrame frame) {
 		this.frame = frame;
@@ -19,6 +21,7 @@ public class TrajectoryManager {
 		y = new int[62832];	
 		r = new double[62832];	
 		cons = new Constants(frame);
+		stringWriter = new StringWriter();
 		
 	}
 	
@@ -30,6 +33,27 @@ public class TrajectoryManager {
 			getY()[(int) ii] = (int) (getR()[(int) ii] * Math.sin(ii/10000));
 		}
 		
+	}
+	
+	
+	//here i prepare to save data. I create StringRiderto hold history of animation.
+	public void prepareStringReader() {
+		stringWriter.flush();
+		stringWriter.getBuffer().setLength(0);
+		System.out.println(stringWriter.toString());
+		stringWriter.write("Orbital Movement Simulator for PO project \n");
+		stringWriter.write("Central mass: ");
+		stringWriter.write(String.valueOf(cons.M));
+		stringWriter.write("\nOrbiting mass: ");
+		stringWriter.write(String.valueOf(cons.m));
+		stringWriter.write("\nAngular momentum: ");
+		stringWriter.write(String.valueOf(cons.L));
+		stringWriter.write("\nOrbit parameters: P=");
+		stringWriter.write(String.valueOf(cons.P));
+		stringWriter.write(", epsilon=");
+		stringWriter.write(String.valueOf(cons.epsilon));
+		stringWriter.write("\n----------------------------\n");
+		stringWriter.write("x,y,v,theta\n");
 	}
 	
 	 public void draw(Graphics2D g2d) { 
@@ -60,6 +84,14 @@ public class TrajectoryManager {
 		return x;
 	}
 
+	public StringWriter getStringWriter() {
+		return stringWriter;
+	}
+
+	public void setStringWriter(StringWriter stringWriter) {
+		this.stringWriter = stringWriter;
+	}
+	
 
 	 
 

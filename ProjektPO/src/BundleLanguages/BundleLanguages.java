@@ -43,6 +43,8 @@ public class BundleLanguages {
         main.getDataPanel().getCurrentEnergy().setTitle(rBundle.getString("currentEnergy"));
         main.getDataPanel().getCurrentReductedMass().setTitle(rBundle.getString("currentReductedMass"));
         main.getDataPanel().getCurrentAngularMomentum().setTitle(rBundle.getString("currentAngularMomentum"));
+        main.setErrorMessage("errorMessage");
+        main.setErrorMessageTitle("errorMessageTitle");
 	}
 	MainFrame main;
 	StartButtonListener startListener;

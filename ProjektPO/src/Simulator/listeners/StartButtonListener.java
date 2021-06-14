@@ -16,7 +16,7 @@ public class StartButtonListener implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if(getReset()) {
 			
-			frame.getWhiteboardPanel().setDrawAnimation(true);
+			//frame.getWhiteboardPanel().setDrawAnimation(true);
 			frame.getWhiteboardPanel().refresh();
 			frame.getWhiteboardPanel().repaint();
 			reset = false;
@@ -24,7 +24,7 @@ public class StartButtonListener implements ActionListener {
 		}
 		else {
 			frame.getStartButton().setText("START");
-			frame.getWhiteboardPanel().getTrajectory().getConstants().getScheduler().shutdown();
+			frame.getWhiteboardPanel().getScheduler().shutdown();
 			reset = true;
 		}
 	}
