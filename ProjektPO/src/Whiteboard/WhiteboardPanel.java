@@ -1,10 +1,14 @@
 package Whiteboard;
 
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import javax.swing.JPanel;
 
@@ -23,6 +27,8 @@ public class WhiteboardPanel extends JPanel {
 		trajectory = new TrajectoryManager(frame);
 		blueDot = new BlueDotManager(frame);
 		velocityChooser = new VelocityChooserManager(frame);
+		
+		animation = new AnimationManager(trajectory);
 		
 		mouseManager = new MouseManagement(frame);
 		this.addMouseListener(mouseManager); //listener for choosing coordinates an velocity by mouse
@@ -73,24 +79,30 @@ public class WhiteboardPanel extends JPanel {
 		//drawing moving object
 		blueDot.drawDot(g2d, x, y);
 		
-		if(drawAnimation) {
+		//if(drawAnimation) {
 			//g2d.scale((this.getWidth()/5)/Math.pow(10, axes.getZoom()), (this.getHeight()/5)/Math.pow(10, axes.getZoom()));
 			//g2d.setColor(Color.blue);			
 			//g2d.fillOval((int)( x- Math.pow(10, axes.getZoom())/20) ,(int)( y- Math.pow(10, axes.getZoom())/20), (int) Math.pow(10, axes.getZoom())/10, (int) Math.pow(10, axes.getZoom())/10);
 			//now using BlueDotManager:
 			
 			
+			
+			
+			
 			if(drawVelocityComponets) {
 				g2d.setColor(Color.green);
-				g2d.drawLine((int) x, (int) y,(int)(x+trajectory.cons.animation.vx),(int)y);
-				g2d.drawLine((int) x, (int) y,(int) x,(int)(y+trajectory.cons.animation.vy));
+				//g2d.drawLine((int) x, (int) y,(int)(x+trajectory.cons.animation.vx),(int)y);
+				//g2d.drawLine((int) x, (int) y,(int) x,(int)(y+trajectory.cons.animation.vy));
+				g2d.drawLine((int) x, (int) y,(int)(x+animation.vx),(int)y);
+				g2d.drawLine((int) x, (int) y,(int) x,(int)(y+animation.vy));
 			}
 			if(drawVelocity) {
 				g2d.setColor(Color.red);
-				g2d.drawLine((int) x, (int) y,(int)(x+trajectory.cons.animation.vx),(int)(y+trajectory.cons.animation.vy));
+				//g2d.drawLine((int) x, (int) y,(int)(x+trajectory.cons.animation.vx),(int)(y+trajectory.cons.animation.vy));
+				g2d.drawLine((int) x, (int) y,(int)(x+animation.vx),(int)(y+animation.vy));
 			}
 			
-		}
+		//}
 		
 		if(drawVelocityChooser) {
 			g2d.setColor(Color.CYAN);
@@ -101,6 +113,10 @@ public class WhiteboardPanel extends JPanel {
 	//This function runs for example after clicking the start button. It update data in WhiteboarPanel, e.g:
 	public void refresh() {
 		trajectory.calculateTrajectory(); //recalculate the trajectory
+		trajectory.prepareStringReader();
+		//animation! now here!
+    	scheduler = Executors.newScheduledThreadPool(1);
+		scheduler.scheduleAtFixedRate(animation, 0, 1, MILLISECONDS);
 	}
 	
 
@@ -133,9 +149,9 @@ public class WhiteboardPanel extends JPanel {
 	}
 
 	
-	public void setDrawAnimation(boolean drawAnimation) {
+	/*public void setDrawAnimation(boolean drawAnimation) {
 		this.drawAnimation = drawAnimation;
-	}
+	}*/
 	
 	public void setDrawVelocityComponets(boolean drawVelocityComponets) {
 		this.drawVelocityComponets = drawVelocityComponets;
@@ -159,6 +175,32 @@ public class WhiteboardPanel extends JPanel {
 	public void setDrawVelocityChooser(boolean drawVelocityChooser) {
 		this.drawVelocityChooser = drawVelocityChooser;
 	}
+	public AnimationManager getAnimationManager(){
+		return animation;
+	}
+	
+	public ScheduledExecutorService getScheduler(){
+		return scheduler;
+	}
+	
+
+
+
+	public double getBlueDotX() {
+		return x;
+	}
+
+	public void setBlueDotX(double x) {
+		this.x = x;
+	}
+
+	public double getBlueDotY() {
+		return y;
+	}
+
+	public void setBlueDotY(double y) {
+		this.y = y;
+	}
 
 
 
@@ -171,10 +213,13 @@ public class WhiteboardPanel extends JPanel {
 	BlueDotManager blueDot; //blue dot manager is for the moving object
 	VelocityChooserManager velocityChooser;
 	
+	ScheduledExecutorService scheduler;
+	AnimationManager animation;
+	
 	MouseManagement mouseManager;
 	
 	boolean drawTrajectory  = false;
-	boolean drawAnimation  = false;
+	//boolean drawAnimation  = false;
 	boolean drawAxes = true;
 	boolean drawVelocityComponets = false;
 	boolean drawVelocity = false;

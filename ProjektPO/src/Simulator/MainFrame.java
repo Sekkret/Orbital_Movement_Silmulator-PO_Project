@@ -2,8 +2,6 @@ package Simulator;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,9 +10,15 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import BundleLanguages.BundleLanguages;
 import Simulator.listeners.OptionPanelCheckboxShowAxisListener;
@@ -23,8 +27,6 @@ import Simulator.listeners.OptionPanelCheckboxShowVelocity;
 import Simulator.listeners.OptionPanelCheckboxShowVelocityComponents;
 import Simulator.listeners.OptionPanelSliderListener;
 import Simulator.listeners.StartButtonListener;
-import Whiteboard.MouseManagement;
-import Whiteboard.TrajectoryManager;
 import Whiteboard.WhiteboardPanel;
 
 @SuppressWarnings("serial")
@@ -39,7 +41,7 @@ public class MainFrame extends JFrame {
 			@Override
 		    public void windowClosing(WindowEvent windowEvent) {
 				if(startButton.getText()=="RESET")
-					whiteboardPanel.getTrajectory().getConstants().getScheduler().shutdown();
+					whiteboardPanel.getScheduler().shutdown();
 				System.exit(0);
 		    }
 		});
@@ -165,13 +167,15 @@ public class MainFrame extends JFrame {
 						dataPanel.currentReductedMass.setLabel("0");
 						dataPanel.currentVelocity.setLabel("0");
 						dataPanel.currentAngularMomentum.setLabel("0");
-						whiteboardPanel.setDrawAnimation(false);
+						//whiteboardPanel.setDrawAnimation(false);
 						
 						for(double ii = 0; ii < 62832; ii++) {
 							whiteboardPanel.getTrajectory().getR()[(int) ii] =0;
 							whiteboardPanel.getTrajectory().getX()[(int) ii] = 0;
 							whiteboardPanel.getTrajectory().getY()[(int) ii] = 0;
 						}
+						whiteboardPanel.setBlueDotX(160);
+						whiteboardPanel.setBlueDotY(30);
 						whiteboardPanel.repaint();
 						}
 					});
@@ -180,6 +184,34 @@ public class MainFrame extends JFrame {
 			
 		};
 		menuBar.newItem.addActionListener(newListener);
+		
+		//data export
+		menuBar.saveItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+			    int returnVal = chooser.showSaveDialog(whiteboardPanel);
+			    if(returnVal == JFileChooser.APPROVE_OPTION) {
+			       
+			    	File exportFile = chooser.getSelectedFile();
+			    	try {
+						FileWriter fileWriter = new FileWriter(exportFile);
+						fileWriter.write(whiteboardPanel.getTrajectory().getStringWriter().toString());
+						fileWriter.flush();
+						fileWriter.close();
+					} catch (IOException e1) {
+						JOptionPane.showMessageDialog(whiteboardPanel,
+							    errorMessage,
+							    errorMessageTitle,
+							    JOptionPane.WARNING_MESSAGE);
+						e1.printStackTrace();
+					}
+			    }
+				
+			}
+			
+		});
 		
 		
 		//startButton.addActionListener(constants.startListener);
@@ -244,6 +276,33 @@ public class MainFrame extends JFrame {
 	}
 
 
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+
+
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+
+
+
+
+	public String getErrorMessageTitle() {
+		return errorMessageTitle;
+	}
+
+
+
+
+	public void setErrorMessageTitle(String errorMessageTitle) {
+		this.errorMessageTitle = errorMessageTitle;
+	}
+
+
+
 
 
 	JPanel rightSidePanel;
@@ -261,6 +320,9 @@ public class MainFrame extends JFrame {
 	String countryS;
 	String languageS;
 	StartButtonListener startListener;
+	
+	String errorMessage;
+	String errorMessageTitle;
 	
 	
 

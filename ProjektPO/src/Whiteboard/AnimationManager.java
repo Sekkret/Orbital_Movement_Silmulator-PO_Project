@@ -5,8 +5,9 @@ import javax.swing.SwingUtilities;
 public class AnimationManager implements Runnable {
 	double x, y, r, V, T, Eef, v, theta, nthet, vr, vx, vy;
 
-	public AnimationManager(Constants constants)  {
-		cons = constants;
+	public AnimationManager(TrajectoryManager trajectory)  {
+		this.trajectory = trajectory;
+		cons = trajectory.cons;
 	}
 
 
@@ -34,7 +35,9 @@ public class AnimationManager implements Runnable {
 			vy = v * Math.sin(theta);
 			SwingUtilities.invokeLater(new Runnable(){
 				@Override
-				public void run() {				
+				public void run() {			
+					
+					//this updates labels in frame
 					cons.frame.getWhiteboardPanel().repaint();
 					cons.frame.getInputPanel().getxValueInput().setText(Double.toString(x)); 
 					cons.frame.getInputPanel().getyValueInput().setText(Double.toString(y)); 
@@ -45,13 +48,17 @@ public class AnimationManager implements Runnable {
 					cons.frame.getDataPanel().getCurrentVelocity().setLabel(Double.toString(v)); 
 					cons.frame.getInputPanel().getVelocityValueInput().setText(Double.toString(v)); 
 					cons.frame.getInputPanel().getVelocityDirectionInput().setText(Double.toString(180/Math.PI*theta)); 
+					
+					//this collect data for exporting
+					String newLine = String.valueOf(x)+","+String.valueOf(y)+","+String.valueOf(v)+","+String.valueOf(180/Math.PI*theta)+"\n";
+					trajectory.stringWriter.write(newLine);
 				}
 			});
 		}
 	
 	
 
-
+	TrajectoryManager trajectory;
 	Constants cons;
 	
 	
