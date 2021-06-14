@@ -11,21 +11,27 @@ public class AxesManager {
 		this.zoom = zoom;
 	}
 	
-	public void paintAxes(Graphics2D g, int width, int height) {
+	public void paintAxes(Graphics2D g, int width, int height) { //need width and height of e.g. panel
 
+		
+		//two main lines of the "chart"
 		g.drawLine(-width/2, 0, width/2, 0);
 		g.drawLine(0, -height/2, 0, height/2);
+		//arrowheads
 		g.drawLine((width/2)-(width/50), height/50, width/2, 0);
 		g.drawLine((width/2)-(width/50), -height/50, width/2, 0);
 		g.drawLine(0, height/2, -width/80, (height/2)-(height/50)); 
 		g.drawLine(0, height/2, width/80, (height/2)-(height/50)); 
 		
+		//every chart must be correctly signed
 		g.scale(1, -1);
 		g.drawString("X", width/2-20, -height/20);
 		g.drawString("[m]"+"*10^"+String.valueOf(zoom), width/2-80, height/20);
 		g.drawString("Y", -20, -height/2+10);
 		g.drawString("[m]"+"*10^"+String.valueOf(zoom), 20, -height/2+10);
 
+		
+		//point on axes to make scale
 		for(int i=-4; i<5; i++) {
 			g.drawLine(i*width/10, 10, i*width/10, -10);
 			g.drawLine(10, i*height/10, -10, i*height/10);

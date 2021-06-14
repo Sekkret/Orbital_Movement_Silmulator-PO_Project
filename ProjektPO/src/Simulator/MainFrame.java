@@ -23,6 +23,7 @@ import Simulator.listeners.OptionPanelCheckboxShowVelocity;
 import Simulator.listeners.OptionPanelCheckboxShowVelocityComponents;
 import Simulator.listeners.OptionPanelSliderListener;
 import Simulator.listeners.StartButtonListener;
+import Whiteboard.MouseManagement;
 import Whiteboard.TrajectoryManager;
 import Whiteboard.WhiteboardPanel;
 
@@ -61,6 +62,7 @@ public class MainFrame extends JFrame {
 		inputPanel = new InputPanel();
 		
 		whiteboardPanel = new WhiteboardPanel(this);
+		
 		leftSidePanel.add(whiteboardPanel, BorderLayout.CENTER);
 		
 		startButton = new JButton("START");

@@ -18,8 +18,16 @@ public class WhiteboardPanel extends JPanel {
 		newColor=Color.WHITE;
 		this.frame = frame;
 		drawingSpace = null;
+		
 		axes = new AxesManager(2);
-		trajectory = new TrajectoryManager(frame);		
+		trajectory = new TrajectoryManager(frame);
+		blueDot = new BlueDotManager(frame);
+		velocityChooser = new VelocityChooserManager(frame);
+		
+		mouseManager = new MouseManagement(frame);
+		this.addMouseListener(mouseManager); //listener for choosing coordinates an velocity by mouse
+		this.addMouseMotionListener(mouseManager);
+		
 		basicStroke = new BasicStroke(2);
 		x =Integer.parseInt(frame.getInputPanel().getxValueInput().getText());
 		y = Integer.parseInt(frame.getInputPanel().getyValueInput().getText());
@@ -34,6 +42,7 @@ public class WhiteboardPanel extends JPanel {
 	    gc.setColor(newColor);
 	    gc.fillRect(-this.getWidth()/2, -this.getHeight()/2, this.getWidth(), this.getHeight());
 	    gc.setColor(Color.BLACK);
+	    
 		
 	    //And here we set coordinates system and basic settings to Stroke
 	    Graphics2D g2d = (Graphics2D) g;
@@ -43,6 +52,11 @@ public class WhiteboardPanel extends JPanel {
 		g2d.scale(1, -1);
 		g2d.setColor(Color.BLACK);
 		g2d.setStroke(basicStroke);
+		
+		//we need center mass. This is Sun.
+		g2d.setColor(Color.ORANGE);
+		g2d.fillOval(-this.getWidth()/30, -this.getHeight()/30, this.getWidth()/15, this.getHeight()/15);
+		g2d.setColor(Color.BLACK);
 		
 		//Finally, here all managers work if they're allowed to.
 		if (drawAxes)
@@ -56,10 +70,16 @@ public class WhiteboardPanel extends JPanel {
 			g2d.scale(1/((this.getWidth()/5)/Math.pow(10, axes.getZoom())), 1/((this.getHeight()/5)/Math.pow(10, axes.getZoom())));
 
 		}
+		//drawing moving object
+		blueDot.drawDot(g2d, x, y);
+		
 		if(drawAnimation) {
-			g2d.scale((this.getWidth()/5)/Math.pow(10, axes.getZoom()), (this.getHeight()/5)/Math.pow(10, axes.getZoom()));
-			g2d.setColor(Color.blue);			
-			g2d.fillOval((int)( x- Math.pow(10, axes.getZoom())/20) ,(int)( y- Math.pow(10, axes.getZoom())/20), (int) Math.pow(10, axes.getZoom())/10, (int) Math.pow(10, axes.getZoom())/10);
+			//g2d.scale((this.getWidth()/5)/Math.pow(10, axes.getZoom()), (this.getHeight()/5)/Math.pow(10, axes.getZoom()));
+			//g2d.setColor(Color.blue);			
+			//g2d.fillOval((int)( x- Math.pow(10, axes.getZoom())/20) ,(int)( y- Math.pow(10, axes.getZoom())/20), (int) Math.pow(10, axes.getZoom())/10, (int) Math.pow(10, axes.getZoom())/10);
+			//now using BlueDotManager:
+			
+			
 			if(drawVelocityComponets) {
 				g2d.setColor(Color.green);
 				g2d.drawLine((int) x, (int) y,(int)(x+trajectory.cons.animation.vx),(int)y);
@@ -70,6 +90,11 @@ public class WhiteboardPanel extends JPanel {
 				g2d.drawLine((int) x, (int) y,(int)(x+trajectory.cons.animation.vx),(int)(y+trajectory.cons.animation.vy));
 			}
 			
+		}
+		
+		if(drawVelocityChooser) {
+			g2d.setColor(Color.CYAN);
+			velocityChooser.drawVector(g2d, x, y, xv, yv);
 		}
 		
 	}
@@ -119,12 +144,20 @@ public class WhiteboardPanel extends JPanel {
 	public void setDrawVelocity(boolean drawVelocity) {
 		this.drawVelocity = drawVelocity;
 	}
-
-
 	
+	public BlueDotManager getBlueDot() {
+		return blueDot;
+	}
+
+	public void setBlueDot(BlueDotManager blueDot) {
+		this.blueDot = blueDot;
+	}
 
 	public void setNewColor(Color newColor) {
 		this.newColor = newColor;
+	}
+	public void setDrawVelocityChooser(boolean drawVelocityChooser) {
+		this.drawVelocityChooser = drawVelocityChooser;
 	}
 
 
@@ -135,15 +168,21 @@ public class WhiteboardPanel extends JPanel {
 	BufferedImage drawingSpace;
 	AxesManager axes;
 	TrajectoryManager trajectory;
+	BlueDotManager blueDot; //blue dot manager is for the moving object
+	VelocityChooserManager velocityChooser;
 	
+	MouseManagement mouseManager;
 	
 	boolean drawTrajectory  = false;
 	boolean drawAnimation  = false;
 	boolean drawAxes = true;
 	boolean drawVelocityComponets = false;
 	boolean drawVelocity = false;
-	double x,y;
+	boolean drawVelocityChooser = false;
+	double x,y; //for blue dot
 	Color newColor;
+	
+	double xv, yv; //for mouse interaction with whiteboardPanel
 	
 	BasicStroke basicStroke;
 

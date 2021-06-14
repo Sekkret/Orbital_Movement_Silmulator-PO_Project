@@ -14,10 +14,10 @@ public class AnimationManager implements Runnable {
 	
 			cons.newfi += cons.L/cons.mi/cons.newr/cons.newr*0.001;
 			cons.newr = (cons.P/(1 + cons.epsilon * Math.cos(cons.newfi - cons.fi_p)));
-			cons.frame.getWhiteboardPanel().x =cons.newr*Math.cos(cons.newfi);
-			cons.frame.getWhiteboardPanel().y =cons.newr*Math.sin(cons.newfi);	
 			x = cons.newr*Math.cos(cons.newfi);
 			y = cons.newr*Math.sin(cons.newfi);
+			cons.frame.getWhiteboardPanel().x = x; //here
+			cons.frame.getWhiteboardPanel().y = y; //and here new coordinates of blue dot get out
 			r = cons.newr;
 			V = -cons.alpha/r;
 			T = cons.E - V;
