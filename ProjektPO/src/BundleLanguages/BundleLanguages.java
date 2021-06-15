@@ -18,7 +18,7 @@ public class BundleLanguages {
 		main.getBasicMenuBar().getNewItem().setText(rBundle.getString("new"));
 		main.getBasicMenuBar().getSaveItem().setText(rBundle.getString("save"));
 		main.getBasicMenuBar().getExportItem().setText(rBundle.getString("export"));
-		main.getBasicMenuBar().getWriteItem().setText(rBundle.getString("write"));
+		main.getBasicMenuBar().getWriteItem().setText(rBundle.getString("read"));
 		main.getBasicMenuBar().getFileMenu().setText(rBundle.getString("file"));
 		main.getBasicMenuBar().getHelpMenu().setText(rBundle.getString("help"));
 		main.getBasicMenuBar().getAboutItem().setText( rBundle.getString("about"));
@@ -44,6 +44,10 @@ public class BundleLanguages {
         main.getDataPanel().getCurrentEnergy().setTitle(rBundle.getString("currentEnergy"));
         main.getDataPanel().getCurrentReductedMass().setTitle(rBundle.getString("currentReductedMass"));
         main.getDataPanel().getCurrentAngularMomentum().setTitle(rBundle.getString("currentAngularMomentum"));
+        main.getStartListener().setError(rBundle.getString("error"));
+        main.getStartListener().setWhatHappened(rBundle.getString("whatHappened"));
+        main.getStartListener().setThetaError(rBundle.getString("thetaError"));
+        main.getStartListener().setNotOrbital(rBundle.getString("notOrbital"));
 	}
 	MainFrame main;
 }

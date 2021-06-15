@@ -136,6 +136,9 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				whiteboardPanel.setNewColor(JColorChooser.showDialog(null,"", Color.WHITE));
+				if(whiteboardPanel.getNewColor()==null) {
+					whiteboardPanel.setNewColor(Color.WHITE);
+				}
 				whiteboardPanel.repaint();
 			}	
 		};
@@ -153,7 +156,7 @@ public class MainFrame extends JFrame {
 		menuBar.exportItem.addActionListener(exportItemListener);
 		
 		
-		//startButton.addActionListener(constants.startListener);
+		
 	}
 	
 	

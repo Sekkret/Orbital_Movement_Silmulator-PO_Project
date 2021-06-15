@@ -47,7 +47,7 @@ public class TrajectoryManager {
 		stringWriter.write("\nOrbiting mass: ");
 		stringWriter.write(String.valueOf(cons.m));
 		stringWriter.write("\nAngular momentum: ");
-		stringWriter.write(String.valueOf(cons.L));
+		stringWriter.write(String.valueOf(cons.getL()));
 		stringWriter.write("\nOrbit parameters: P=");
 		stringWriter.write(String.valueOf(cons.P));
 		stringWriter.write(", epsilon=");

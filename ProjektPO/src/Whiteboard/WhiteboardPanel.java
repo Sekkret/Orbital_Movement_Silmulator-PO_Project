@@ -45,7 +45,7 @@ public class WhiteboardPanel extends JPanel {
 		Graphics2D gc = drawingSpace.createGraphics();
 		gc.translate(this.getWidth()/2, this.getHeight()/2);
 		gc.scale(1,  -1);
-	    gc.setColor(newColor);
+	    gc.setColor(getNewColor());
 	    gc.fillRect(-this.getWidth()/2, -this.getHeight()/2, this.getWidth(), this.getHeight());
 	    gc.setColor(Color.BLACK);
 	    
@@ -79,26 +79,16 @@ public class WhiteboardPanel extends JPanel {
 		//drawing moving object
 		blueDot.drawDot(g2d, x, y);
 		
-		//if(drawAnimation) {
-			//g2d.scale((this.getWidth()/5)/Math.pow(10, axes.getZoom()), (this.getHeight()/5)/Math.pow(10, axes.getZoom()));
-			//g2d.setColor(Color.blue);			
-			//g2d.fillOval((int)( x- Math.pow(10, axes.getZoom())/20) ,(int)( y- Math.pow(10, axes.getZoom())/20), (int) Math.pow(10, axes.getZoom())/10, (int) Math.pow(10, axes.getZoom())/10);
-			//now using BlueDotManager:
-			
-			
 			
 			
 			
 			if(drawVelocityComponets) {
 				g2d.setColor(Color.green);
-				//g2d.drawLine((int) x, (int) y,(int)(x+trajectory.cons.animation.vx),(int)y);
-				//g2d.drawLine((int) x, (int) y,(int) x,(int)(y+trajectory.cons.animation.vy));
 				g2d.drawLine((int) x, (int) y,(int)(x+animation.vx),(int)y);
 				g2d.drawLine((int) x, (int) y,(int) x,(int)(y+animation.vy));
 			}
 			if(drawVelocity) {
 				g2d.setColor(Color.red);
-				//g2d.drawLine((int) x, (int) y,(int)(x+trajectory.cons.animation.vx),(int)(y+trajectory.cons.animation.vy));
 				g2d.drawLine((int) x, (int) y,(int)(x+animation.vx),(int)(y+animation.vy));
 			}
 			
@@ -148,10 +138,7 @@ public class WhiteboardPanel extends JPanel {
 		this.drawAxes = drawAxes;
 	}
 
-	
-	/*public void setDrawAnimation(boolean drawAnimation) {
-		this.drawAnimation = drawAnimation;
-	}*/
+
 	
 	public void setDrawVelocityComponets(boolean drawVelocityComponets) {
 		this.drawVelocityComponets = drawVelocityComponets;
@@ -205,6 +192,13 @@ public class WhiteboardPanel extends JPanel {
 
 
 
+	public Color getNewColor() {
+		return newColor;
+	}
+
+
+
+
 	MainFrame frame;
 
 	BufferedImage drawingSpace;
@@ -219,7 +213,6 @@ public class WhiteboardPanel extends JPanel {
 	MouseManagement mouseManager;
 	
 	boolean drawTrajectory  = false;
-	//boolean drawAnimation  = false;
 	boolean drawAxes = true;
 	boolean drawVelocityComponets = false;
 	boolean drawVelocity = false;

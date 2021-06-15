@@ -73,27 +73,12 @@ public class MouseManagement extends MouseAdapter {
 		
 		//theta is more tricky, because it is arctan(dx/dy)
 		//but arctan has values from -90 deg to 90 deg
-		//thats why we need do many "if" instructions
-		if(x2>x1 && y2>=y1) { // theta in [0, 90 deg)
+		
+		if(x2-x1>=0) { 
 			theta = Math.toDegrees( Math.atan((y2-y1)/(x2-x1)) );
 		}
-		else if(x2==x1 && y2>y1) { //theta=90 deg
-			theta = 90;
-		}
-		else if(x2<x1 && y2>=y1) { //theta in (90 deg, 180 deg]
-			theta = 180 - Math.toDegrees( Math.atan((y2-y1)/(x1-x2)) ); //note inverted x1 with x2
-		}
-		else if(x2<x1 && y2<y1) { //theta in (180 deg, 270 deg)
-			theta = 270 - Math.toDegrees( Math.atan((y1-y2)/(x1-x2)) ); //note inverted x1 with x2 and y1 with y2
-		}
-		else if(x2==x1 && y2<y1) { //theta=270 deg
-			theta = 270;
-		}
-		else if(x2>x1 && y2<y1) { //theta in (270 deg, 360 deg)
-			theta = 360 - Math.toDegrees( Math.atan((y1-y2)/(x2-x1)) ); //note inverted y1 with y2
-		}
-		else if(x2==x1 && y2==y1) { //an extreme case to deal with
-			theta = 0; //only to avoid bugs
+		else {
+			theta = Math.toDegrees( Math.atan((y2-y1)/(x2-x1)) ) + 180; 
 		}
 		
 		//finally we can update text areas

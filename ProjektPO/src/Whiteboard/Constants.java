@@ -29,65 +29,59 @@ public class Constants {
     	 
     	 fi_0 = (x>=0)?Math.atan(y/x): Math.atan(y/x)+ Math.PI;
     	 mi = M*m/(m+M);
-    	 v_fi = v * (-Math.cos(theta) * Math.sin(fi_0) + Math.cos(fi_0) * Math.sin(theta));
-    	 v_r = v * (Math.cos(theta) * Math.cos(fi_0) + Math.sin(fi_0) * Math.sin(theta));
+    	 v_fi = v * (-Math.cos(theta) * Math.sin(getFi_0()) + Math.cos(getFi_0()) * Math.sin(theta));
+    	 v_r = v * (Math.cos(theta) * Math.cos(getFi_0()) + Math.sin(getFi_0()) * Math.sin(theta));
     	 r_p = Math.sqrt(x*x + y*y);
     	 L = mi * v_fi * r_p;
     	 E = mi/2 * ( v_r*v_r + v_fi*v_fi) - alpha/r_p;
-    	 epsilon = Math.sqrt(1 + 2 * E * L * L /mi /alpha /alpha);
-    	 P = L * L /mi /alpha;
-    	 if((180/Math.PI*fi_0>= 0 && 180/Math.PI*fi_0< 90)) {
-    		 if((180/Math.PI*theta>= (180/Math.PI*fi_0-90) && 180/Math.PI*theta<180/Math.PI*fi_0)||(180/Math.PI*theta>= (180/Math.PI*fi_0+90) && 180/Math.PI*theta<180/Math.PI*fi_0+180)){
-    			 fi_p = Math.acos((P-r_p)/epsilon/r_p)+fi_0;
+    	 epsilon = Math.sqrt(1 + 2 * E * getL() * getL() /mi /alpha /alpha);
+    	 P = getL() * getL() /mi /alpha;
+    	 if((180/Math.PI*getFi_0()>= 0 && 180/Math.PI*getFi_0()< 90)) {
+    		 if((180/Math.PI*theta>= (180/Math.PI*getFi_0()-90) && 180/Math.PI*theta<180/Math.PI*getFi_0())||(180/Math.PI*theta>= (180/Math.PI*getFi_0()+90) && 180/Math.PI*theta<180/Math.PI*getFi_0()+180)){
+    			 fi_p = Math.acos((P-r_p)/epsilon/r_p)+getFi_0();
     		 }
     		 else {
-    			 fi_p = -Math.acos((P-r_p)/epsilon/r_p)+fi_0 ;
+    			 fi_p = -Math.acos((P-r_p)/epsilon/r_p)+getFi_0() ;
     		 }
     	 }
-    	 else if((180/Math.PI*fi_0>= 90 && 180/Math.PI*fi_0<180)) {
-    		 if((180/Math.PI*theta>= -90 && 180/Math.PI*theta<180/Math.PI*fi_0-180)||(180/Math.PI*theta>=180/Math.PI*fi_0-90 && 180/Math.PI*theta<180/Math.PI*fi_0)||(180/Math.PI*theta>=180/Math.PI*fi_0+90 && 180/Math.PI*theta<=270)){
-    			 fi_p = Math.acos((P-r_p)/epsilon/r_p)+fi_0;
+    	 else if((180/Math.PI*getFi_0()>= 90 && 180/Math.PI*getFi_0()<180)) {
+    		 if((180/Math.PI*theta>= -90 && 180/Math.PI*theta<180/Math.PI*getFi_0()-180)||(180/Math.PI*theta>=180/Math.PI*getFi_0()-90 && 180/Math.PI*theta<180/Math.PI*getFi_0())||(180/Math.PI*theta>=180/Math.PI*getFi_0()+90 && 180/Math.PI*theta<=270)){
+    			 fi_p = Math.acos((P-r_p)/epsilon/r_p)+getFi_0();
     		 }
     		 else {
-    			 fi_p = -Math.acos((P-r_p)/epsilon/r_p)+fi_0 ;
+    			 fi_p = -Math.acos((P-r_p)/epsilon/r_p)+getFi_0() ;
     		 }
     	 }
-    	 else if((180/Math.PI*fi_0>=180 && 180/Math.PI*fi_0<270)) {
-    		 if((180/Math.PI*theta>= 180/Math.PI*fi_0-270 && 180/Math.PI*theta<180/Math.PI*fi_0-180)||(180/Math.PI*theta>=180/Math.PI*fi_0-90 && 180/Math.PI*theta<180/Math.PI*fi_0)){
-    			 fi_p = Math.acos((P-r_p)/epsilon/r_p)+fi_0;
+    	 else if((180/Math.PI*getFi_0()>=180 && 180/Math.PI*getFi_0()<270)) {
+    		 if((180/Math.PI*theta>= 180/Math.PI*getFi_0()-270 && 180/Math.PI*theta<180/Math.PI*getFi_0()-180)||(180/Math.PI*theta>=180/Math.PI*getFi_0()-90 && 180/Math.PI*theta<180/Math.PI*getFi_0())){
+    			 fi_p = Math.acos((P-r_p)/epsilon/r_p)+getFi_0();
     		 }
     		 else {
-    			 fi_p = -Math.acos((P-r_p)/epsilon/r_p)+fi_0 ;
+    			 fi_p = -Math.acos((P-r_p)/epsilon/r_p)+getFi_0() ;
     		 }
     	 }
-    	 else if((180/Math.PI*fi_0>= -90 && 180/Math.PI*fi_0<0)) {
-    		 if((180/Math.PI*theta>= -90 && 180/Math.PI*theta<180/Math.PI*fi_0)||(180/Math.PI*theta>=180/Math.PI*fi_0+90 && 180/Math.PI*theta<180/Math.PI*fi_0+180)||(180/Math.PI*theta>=180/Math.PI*fi_0+270 && 180/Math.PI*theta<=270)){
-    			 fi_p = Math.acos((P-r_p)/epsilon/r_p)+fi_0;
+    	 else if((180/Math.PI*getFi_0()>= -90 && 180/Math.PI*getFi_0()<0)) {
+    		 if((180/Math.PI*theta>= -90 && 180/Math.PI*theta<180/Math.PI*getFi_0())||(180/Math.PI*theta>=180/Math.PI*getFi_0()+90 && 180/Math.PI*theta<180/Math.PI*getFi_0()+180)||(180/Math.PI*theta>=180/Math.PI*getFi_0()+270 && 180/Math.PI*theta<=270)){
+    			 fi_p = Math.acos((P-r_p)/epsilon/r_p)+getFi_0();
     		 }
     		 else {
-    			 fi_p = -Math.acos((P-r_p)/epsilon/r_p)+fi_0 ;
+    			 fi_p = -Math.acos((P-r_p)/epsilon/r_p)+getFi_0() ;
     		 }
     	 }
-    	 newfi = fi_0;
+    	 newfi = getFi_0();
     	 newr = r_p;
     	 
     	 frame.getDataPanel().getCurrentReductedMass().setLabel(Double.toString(mi));
     	 frame.getDataPanel().getCurrentEnergy().setLabel(Double.toString(E));
     	 frame.getDataPanel().getCurrentAngularMomentum().setLabel(Double.toString(L));
-    	 
-    	//animation = new AnimationManager(this);
-    	//scheduler = Executors.newScheduledThreadPool(1);
-		//scheduler.scheduleAtFixedRate(animation, 0, 1, MILLISECONDS);
-        
-
 	}
-	/*public AnimationManager getAnimationManager(){
-		return animation;
+    
+	public double getL() {
+		return L;
 	}
-	
-	public ScheduledExecutorService getScheduler(){
-		return scheduler;
-	}*/
+	public double getFi_0() {
+		return fi_0;
+	}
 
 	
 

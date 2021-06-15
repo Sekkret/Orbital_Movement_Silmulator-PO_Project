@@ -13,24 +13,24 @@ public class AnimationManager implements Runnable {
 
 		public void run() {
 	
-			cons.newfi += cons.L/cons.mi/cons.newr/cons.newr*0.001;
-			cons.newr = (cons.P/(1 + cons.epsilon * Math.cos(cons.newfi - cons.fi_p)));
-			x = cons.newr*Math.cos(cons.newfi);
-			y = cons.newr*Math.sin(cons.newfi);
-			cons.frame.getWhiteboardPanel().x = x; //here
-			cons.frame.getWhiteboardPanel().y = y; //and here new coordinates of blue dot get out
-			r = cons.newr;
-			V = -cons.alpha/r;
-			T = cons.E - V;
-			v = Math.sqrt(2/cons.mi*T);
-			vr = cons.L/cons.mi/r/r*cons.P*cons.epsilon*Math.sin(cons.newfi-cons.fi_p)/(1 + cons.epsilon * Math.cos(cons.newfi - cons.fi_p))/(1 + cons.epsilon * Math.cos(cons.newfi - cons.fi_p));
-			vx = vr*Math.cos(cons.newfi)-cons.L/cons.mi/r*Math.sin(cons.newfi);
-			Eef = cons.L*cons.L/2/cons.mi/r/r + V;
+			getCons().newfi += getCons().getL()/getCons().mi/getCons().newr/getCons().newr*0.001;
+			getCons().newr = (getCons().P/(1 + getCons().epsilon * Math.cos(getCons().newfi - getCons().fi_p)));
+			x = getCons().newr*Math.cos(getCons().newfi);
+			y = getCons().newr*Math.sin(getCons().newfi);
+			getCons().frame.getWhiteboardPanel().x = x; //here
+			getCons().frame.getWhiteboardPanel().y = y; //and here new coordinates of blue dot get out
+			r = getCons().newr;
+			V = -getCons().alpha/r;
+			T = getCons().E - V;
+			v = Math.sqrt(2/getCons().mi*T);
+			vr = getCons().getL()/getCons().mi/r/r*getCons().P*getCons().epsilon*Math.sin(getCons().newfi-getCons().fi_p)/(1 + getCons().epsilon * Math.cos(getCons().newfi - getCons().fi_p))/(1 + getCons().epsilon * Math.cos(getCons().newfi - getCons().fi_p));
+			vx = vr*Math.cos(getCons().newfi)-getCons().getL()/getCons().mi/r*Math.sin(getCons().newfi);
+			Eef = getCons().getL()*getCons().getL()/2/getCons().mi/r/r + V;
 			if(vx>0) {
-			theta = Math.asin(cons.L/cons.mi/r/v*(Math.cos(cons.newfi)+cons.P*cons.epsilon*Math.sin(cons.newfi-cons.fi_p)*Math.sin(cons.newfi)/(1 + cons.epsilon * Math.cos(cons.newfi - cons.fi_p))/(1 + cons.epsilon * Math.cos(cons.newfi - cons.fi_p))/r));
+			theta = Math.asin(getCons().getL()/getCons().mi/r/v*(Math.cos(getCons().newfi)+getCons().P*getCons().epsilon*Math.sin(getCons().newfi-getCons().fi_p)*Math.sin(getCons().newfi)/(1 + getCons().epsilon * Math.cos(getCons().newfi - getCons().fi_p))/(1 + getCons().epsilon * Math.cos(getCons().newfi - getCons().fi_p))/r));
 			}
 			else {
-				theta = -Math.asin(cons.L/cons.mi/r/v*(Math.cos(cons.newfi)+cons.P*cons.epsilon*Math.sin(cons.newfi-cons.fi_p)*Math.sin(cons.newfi)/(1 + cons.epsilon * Math.cos(cons.newfi - cons.fi_p))/(1 + cons.epsilon * Math.cos(cons.newfi - cons.fi_p))/r))+Math.PI;
+				theta = -Math.asin(getCons().getL()/getCons().mi/r/v*(Math.cos(getCons().newfi)+getCons().P*getCons().epsilon*Math.sin(getCons().newfi-getCons().fi_p)*Math.sin(getCons().newfi)/(1 + getCons().epsilon * Math.cos(getCons().newfi - getCons().fi_p))/(1 + getCons().epsilon * Math.cos(getCons().newfi - getCons().fi_p))/r))+Math.PI;
 			}
 			vy = v * Math.sin(theta);
 			SwingUtilities.invokeLater(new Runnable(){
@@ -38,16 +38,16 @@ public class AnimationManager implements Runnable {
 				public void run() {			
 					
 					//this updates labels in frame
-					cons.frame.getWhiteboardPanel().repaint();
-					cons.frame.getInputPanel().getxValueInput().setText(Double.toString(x)); 
-					cons.frame.getInputPanel().getyValueInput().setText(Double.toString(y)); 
-					cons.frame.getDataPanel().getCurrentDistance().setLabel(Double.toString(r)); 
-					cons.frame.getDataPanel().getCurrentPotential().setLabel(Double.toString(V)); 
-					cons.frame.getDataPanel().getCurrentKineticEnergy().setLabel(Double.toString(T)); 
-					cons.frame.getDataPanel().getCurrentEffectivePotential().setLabel(Double.toString( Eef));
-					cons.frame.getDataPanel().getCurrentVelocity().setLabel(Double.toString(v)); 
-					cons.frame.getInputPanel().getVelocityValueInput().setText(Double.toString(v)); 
-					cons.frame.getInputPanel().getVelocityDirectionInput().setText(Double.toString(180/Math.PI*theta)); 
+					getCons().frame.getWhiteboardPanel().repaint();
+					getCons().frame.getInputPanel().getxValueInput().setText(Double.toString(x)); 
+					getCons().frame.getInputPanel().getyValueInput().setText(Double.toString(y)); 
+					getCons().frame.getDataPanel().getCurrentDistance().setLabel(Double.toString(r)); 
+					getCons().frame.getDataPanel().getCurrentPotential().setLabel(Double.toString(V)); 
+					getCons().frame.getDataPanel().getCurrentKineticEnergy().setLabel(Double.toString(T)); 
+					getCons().frame.getDataPanel().getCurrentEffectivePotential().setLabel(Double.toString( Eef));
+					getCons().frame.getDataPanel().getCurrentVelocity().setLabel(Double.toString(v)); 
+					getCons().frame.getInputPanel().getVelocityValueInput().setText(Double.toString(v)); 
+					getCons().frame.getInputPanel().getVelocityDirectionInput().setText(Double.toString(180/Math.PI*theta)); 
 					
 					//this collect data for exporting
 					String newLine = String.valueOf(x)+","+String.valueOf(y)+","+String.valueOf(v)+","
@@ -58,6 +58,12 @@ public class AnimationManager implements Runnable {
 		}
 	
 	
+
+	public Constants getCons() {
+			return cons;
+		}
+
+
 
 	TrajectoryManager trajectory;
 	Constants cons;
