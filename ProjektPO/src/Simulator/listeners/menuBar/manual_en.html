@@ -1,0 +1,158 @@
+<! doctype html>
+<html>
+<head>
+<meta charset = "UTF-8">
+<title> Orbital Motion Simulator </title>
+</head>
+<body>
+<h1> Orbital Motion Simulator </h1>
+<h2> Program written to pass Object Oriented Programming </h2>
+<h3> By Bartłomiej Baur and Bartosz Skura </h3>
+
+<hr>
+
+<h4> Introduction </h4>
+Orbital Movement Simulator (OMS) is a program that simulates the movement of a celestial body in a frame of reference associated with the second body around which the movement is made. The program determines the parameters and path of the movement, and also carries out its animation. The animation area is interactive and allows you to set some initial parameters of the mouse movement.
+
+<h4> Interface elements </h4>
+The interface consists of the following parts:
+<ol>
+<li> A board in the middle where the animation will be displayed; </li>
+<li> Management panel on the right, which contains:
+<ul>
+<li> Input fields for basic motion elements; </li>
+<li> "Start" button to start the animation; </li>
+<li> distance scale adjustment slider on the board; </li>
+</ul>
+</li>
+<li> Information panel at the bottom; </li>
+<li> Menu bar at the top of the interface; </li>
+</ol>
+
+<h4> Preparing the Simulation </h4>
+To run a simulation, first enter its initial conditions in the text fields on the right side of the interface provided for that purpose:
+<h5> body weights: </h5>
+We need the masses of both bodies - the orbiting body and the central body with which the coordinate system is related. Weights are expressed in kilograms.
+<h5> Location of the orbiting body </h5>
+The position is given in the form of Cartesian coordinates expressed in meters.
+<h5> Speed ​​of the orbiting body </h5>
+Two quantities must be given to determine the speed of the body: the speed value expressed in meters per second and the direction of the speed expressed in angular degrees. Velocity direction is the directional angle between the OX axis of the coordinate system and the velocity vector.
+
+<br>
+<br>
+
+Enter numbers in the text fields, and separate the fraction with a dot. The program supports the use of scientific notation, ie writing large numbers in the exponential notation using the letter "e".
+For example, "2.5e4" represents the number 25000.
+
+The program has some sample start-up conditions set. Of course, you can start them right away. You can restore the condition settings to their original condition by selecting "New" in the "File" tab in the menu bar at the top of the program.
+
+<h4> Enter initial body state with mouse </h4>
+
+The whiteboard on which the animation appears while that animation is paused is interactive. This means that it responds to the mouse. It allows you to indicate the position and initial speed of the body with the mouse. To do this, press the left mouse button, then drag it to another place on the Board and release it. Pressing the button at the indicated location will select that location as the starting position of the movement. Dragging the mouse, in turn, draws the velocity vector hooked to the starting point. Releasing the left mouse button will select the direction and velocity sense indicated by the vector, and its length will be set to the initial velocity value. The speed value is expressed in meters per second and is numerically equal to the length of the vector in meters drawn on the Table, taking into account its scale. This means that if one unit on the Table is 50 m, then drawing a vector long for that unit will set the speed to 50 m / s. To learn more about zooming, read the chapter "Additional options in the management panel".
+
+<h4> Launch animation </h4>
+
+When all the necessary settings have been made, you can start the animation by pressing the "Start" button. If it turns out that the movement cannot be seen because it is outside the boundary of the board, or the orbit is so small that it is barely visible, you can adjust the distance scale on the Board using the adjustment slider at the very bottom of the management panel on the right. (More in the chapter "Additional options of the management panel").
+<br>
+<br>
+
+When the application is launched, the traffic data in the information panel at the bottom of the website is updated. It contains the following information:
+<ol>
+<li> body speed, </li>
+<li> angular momentum </li>
+<li> kinetic energy </li>
+<li> potential energy (potential) </li>
+<li> effective potential </li>
+<li> distance between bodies </li>
+<li> total mechanical energy </li>
+<li> reduced mass of the orbiting body </li>
+</ol>
+All these quantities are expressed in SI units. It is worth noting that there are constant movements among them, as well as those that change with each passing moment. In this way, you can observe constantly changing values ​​of physical quantities. <br>
+Position and speed also change with the progressive circulation of the body. This allows you to resume a stopped an imitation from the last moment.
+
+<br>
+<br>
+
+To stop the animation, press the "STOP" button, now in place of the "START" button.
+
+<h4> Additional management panel options </h4>
+Below the "START" button in the management panel there are additional elements that allow you to show additional elements during the animation.
+
+<h5> Selection boxes </h5>
+The first 4 elements are buttons / windows that enable various additional functionalities:
+<ol>
+<li> "Axes" - shows or hides the coordinate axes. </li>
+<li> "Path" - shows or hides the path the body is moving. </li>
+<li> "Velocity Vector" - shows or hides the current velocity vector of the body. </li>
+<li> "Vector components" - show or hide Cartesian components of the velocity vector </li>
+</ol>
+
+<h5> distance scale adjustment slider on the blackboard </h5>
+The last element of the management menu is a slider that allows you to zoom in or out on the animation board. The axes on the board are divided into half units. The unit, however, is given at the tip of each axis. It has the form [meter * 10 ^ n] where n is the scale set with the slider.
+
+<h4> Menu bar at the top of the interface </h4>
+The menu bar contains additional program functionalities, The tree of all options is as follows:
+<ol>
+<li>
+File:
+<ol>
+<li> New </li>
+<li> Save </li>
+<li> Load </li>
+<li> Export animation run </li>
+</ol>
+</li>
+<li>
+Help:
+<ol>
+<li> Instruction </li>
+<li> About the program </li>
+</ol>
+</li>
+<li>
+Settings:
+<ol>
+<li>
+Language:
+<ol>
+<li> Polish </li>
+<li> English </li>
+</ol>
+</li>
+<li> Color </li>
+
+</ol>
+</li>
+</ol>
+
+<h5> New </h5>
+Creates a "new file", ie restores the sample initial simulation settings.
+
+<h5> Save </h5>
+It allows you to save the current animation conditions to a file with the proposed OMS extension, in order to be able to return to the previous simulation after restarting the program.
+
+<h5> Load </h5>
+It allows you to load a file with the TXT or OMS extension, which stores data for the playback of a previously completed simulation. It is worth noting that the content of the loaded file should be in the appropriate format.
+
+<h5> Export breakthrough animation </h5>
+During the animation, data from the next steps of the simulation are saved in the program memory. This data can be exported as a CSV file. It contains information about the position, speed and energy in successive moments of movement.
+
+<h5> Statement </h5>
+It displays the instruction you are reading right now :)
+
+<h5> About the program </h5>
+It displays the name of the program, the authors, and the license under which the program is released.
+
+<h5> Language </h5>
+It allows you to change the language of the program interface to one of the available languages.
+
+<h5> Color </h5>
+It allows you to change the color of the board on which the simulations take place.
+
+<br>
+<br>
+<br>
+<br>
+<hr>
+</body>
+</html> 

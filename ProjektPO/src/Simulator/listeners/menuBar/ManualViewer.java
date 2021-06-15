@@ -51,7 +51,7 @@ public class ManualViewer extends JFrame implements ActionListener {
 				man = "manual_pl.html";
 			}
 			if(language.equals("en")) {
-				man = "manual_en.htm";
+				man = "manual_en.html";
 				
 			}
 			URL url = ManualViewer.class.getResource(man);

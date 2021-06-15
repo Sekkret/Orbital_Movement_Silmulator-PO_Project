@@ -53,7 +53,7 @@ public class TrajectoryManager {
 		stringWriter.write(", epsilon=");
 		stringWriter.write(String.valueOf(cons.epsilon));
 		stringWriter.write("\n----------------------------\n");
-		stringWriter.write("x,y,v,theta\n");
+		stringWriter.write("x,y,v,theta,T,V,Veff\n");
 	}
 	
 	 public void draw(Graphics2D g2d) { 

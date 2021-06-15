@@ -7,8 +7,8 @@
 	<body>
 		<h1> Symulator Ruchu Orbitalnego</h1>
 		<h2> Program napisany na zaliczenie Programowania Obiektowego </h2>
-		<h3> Napisany przez Bartłomieja Baur i Bartosza Skurę </h3>
-		
+		<h3> Autorstwa Bartłomieja Baur i Bartosza Skury </h3> 
+
 		<hr>
 		
 		<h4> Wprowadzenie </h4>
@@ -29,5 +29,129 @@
 			<li> Paska menu na górze interfejsu; </li>
 		</ol>
 
+		<h4> Przygotowanie Symulacji </h4>
+		Aby uruchomić symulację, należy w pierwszej kolejności podać jej warunki początkowe w przeznaczonych do tego celu polach tekstowych po prawej stronie interfejsu:
+		<h5> masy ciał: </h5>
+		Potrzebne są masy obu ciał - ciała orbitującego oraz centralnego, z którym związany jest układ współrzędnych. Masy wyrażone są w kilogramach.
+		<h5> Położenie ciała orbitującego </h5>
+		Położenie podaje się w postaci współrzędnych kartezjańskich wyrażonych w metrach.
+		<h5> Prędkość orbitującego ciała </h5>
+		Aby określić prędkość ciała, należy podać dwie wielkości: wartość prędkości wyrażoną w metrach na sekundę oraz jej kierunek wyrażony w stopniach kątowych. Kierunek prędkości to kąt kierunkowy, jaki znajduje się między osią OX układu współrzędnych a wektorem prędości.
+
+		<br>
+		<br>
+
+		W pola tekstowe wpisuje się liczby, a ułamek oddziela się kropką. Program obsługuje stosowanie notacji naukowej, tj. zapisywanie dużych liczb w notacji wykładnieczej za pomocą litery "e".
+		Np. zapis "2.5e4" oznacza liczbę 25000.
+
+		Program ma ustawione pewne przykładowe warunki początkowe. Można je oczywiście uruchomić od razu. Można przywrócić ustawienia warunków do początkowych wybierając opcję "Nowy" w zakładce "Plik" w pasku menu na górze programu.
+
+		<h4> Wprowadzanie początkowego stanu ciała za pomocą myszki </h4>
+		
+		Tablica, na której pojawia się animacja, w stanie wstrzymania tej animacji jest interaktywna. Oznacza to, że reaguje na myszkę. Pozwala ona na wskazanie myszką położenia i prędkości początkowej ciała. Aby to zrobić, należy wcisnąć lewy przycisk myszki, a następnie przeciągnąć ją w inne miejsce Tablicy i puścić. Wciśnięcie przycisku we wskazanym miejscu spowoduje wybranie tego miejsca na położenie początkowe ruchu. Przeciąganie myszki z kolei wyrysowuje wektor prędkości zaczepiony o punkt początkowy. Puszczenie kewego przycisku myszki spowoduje wybranie wskazanego przez wektor kierunku i zwrotu prędkości, a jego długość zostaje ustawiona na początkową wiartość prędkości. Wartość prędkości jest wyrażona w metrach na sekundę i liczbowo równa się długości wektora wyrażonej w metrach narysowanego na Tablicy przy uwzględnieniu jej skali. To znaczy, że jeżeli jedna jednostka na Tablicy to 50 m to narysowanie wektora długiego na tę jednostkę spowoduje ustawienie prędkości 50 m/s. Aby dowiedzieć się więcej o przybliżaniu przeczytaj rozdział "Opcje dodatkowe panelu zarządzania".
+
+		<h4> Uruchamianie animacji </h4>
+
+		Gdy wszystkie konieczne ustawienia zostały dokonane, można uruchomić animację wciskając przycisk "Start". Jeżeli okazuje się, że ruchu nie widać bo jest poza obrębem tablicy, albo orbita jest tak mała, że jest leledwie widoczna, można dostosować skalę odległości na Tablicy, korzystając z suwaka regulującego znajdującego się na samym dole panelu zarządzania po prawej stronie. (Więcej w rozdziale "Opcje dodatkowe panelu zarządzania").
+		<br>
+		<br>
+
+		Wraz z uruchomieniem aplikacji aktualizują się dane o ruchu w panelu informacyjnym na dole interejsu. Znajdują się tam następujące informacje:
+		<ol>
+			<li> szybkość ciała, </li>
+			<li> moment pędu </li>
+			<li> energia kinetyczna </li>
+			<li> energia potencjalna (potencjał) </li>
+			<li> potencjał efektywny </li>
+			<li> odległość między ciałami </li>
+			<li> całkowita energia mechaniczna </li>
+			<li> masa zredukowana orbitującego ciała </li>
+		</ol>
+		Wszystkie te wielkości wyrażone są w jednostkach SI. Warto zauważyć, że są wśród nich stałe ruchu,jak i takie, które zmieniają się z każdą chwilą. Można w ten sposób obserwować na bierząco zmnieniające się wartości wielkosci fizycznych. <br>
+		Położenie i prędkość również zmieniają się wraz z postępującym obiegiem ciała. Pozwala to wznowić zatrzymaną animację od ostatniego momentu.
+
+		<br>
+		<br>
+
+		Aby zatrzymać animację, należy nacisnąć przycisk "STOP", znajdujący się teraz na miejscu przycisku "START".
+
+		<h4> Opcje dodatkowe panelu zarządzania </h4>
+		Poniżej przycisku "START" w panelu zarządzania znajdują się dodatkowe elementy, które pozwalają pokazać dodatkowe elementy w czasie animacji.
+
+		<h5> Okienka do zaznaczania </h5>
+		Pierwsze 4 elementy to przyciski/okienka, które włączają różne dodatkowe funkcjonalności:
+		<ol>
+			<li> "Osie" - pokazuje lub ukrywa osie współrzędnych. </li>
+			<li> "Tor ruchu" - pokazuje lub ukrywa tor ruchu, po którym porusza się ciało. </li>
+			<li> "Wektor prędkości" - pokazuje lub ukrywa aktualny wektor prędkości ciała. </li>
+			<li> "Składowe wektora" - pokazuje lub ukrywa składowe kartezjańskie wektora prędkości </li>
+		</ol>
+
+		<h5> suwak regulacji skali odległości na tablicy </h5>
+		Ostatnim elementem menu zarządzania jest suwak, pozwalający przybliżyć lub oddalić widok na tablicy animacji. Na osiach na tablicy wykonane są podziałki co pół jednostki. Jednostka natomiast podana jest przy grocie każdej z osi. Ma ina postać [metr * 10^n] gdzie n to właśnie ustawiana suwakiem skala.
+
+		<h4>Pasek menu na górze interfejsu</h4>
+		Pasek menu zawiera dodatkowe funkcjonalności programu, Drzewo wszystkich opcji przedstawia się następująco:
+		<ol>
+			<li>
+				Plik:
+				<ol>
+					<li> Nowy </li>
+					<li> Zapisz </li>
+					<li> Wczytaj </li>
+					<li> Ekportuj przebieg animacji </li>
+				</ol>
+			</li>
+			<li>
+				Pomoc:
+				<ol>
+					<li> Insrukcja </li>
+					<li> O programie </li>
+				</ol>
+			</li>
+			<li>
+				Ustawienia:
+				<ol>
+					<li> 
+						Język:
+						<ol>
+							<li> polski </li>
+							<li> angielski </li>
+						</ol>
+					</li>
+					<li> Kolor </li>
+
+				</ol>
+			</li>
+		</ol>
+
+		<h5> Nowy </h5>
+		Tworzy "nowy plik" czyli przywraca przykładowe ustawienia początkowe symulacji.
+
+		<h5> Zapisz </h5>
+		Pozwala zapisać bierzące warunki animacji do pliku o proponowanym rozszerzeniu OMS, aby móc po ponownym uruchomieniu programu wrócić do poprzedniej symulacji.
+
+		<h5> Wczytaj </h5>
+		Pozwala wczytać plik o rozszerzeniu TXT lub OMS, przechowujący dane do odtworzenia wcześniej zakończonej symulacji. Warto zwrócić uwagę, że treść wczytywanego pliku powinna mieć odpowiedni format.
+		
+		<h5> Eksporuj przebiej animacji </h5>
+		Podczas trwania animacji w pamięci programu zapisywane są dane z kolejnych kroków symulacji. Dane te można wyeksportować w postaci pliku CSV. Zawiera on informacje o położeniu, prędkości i energiach w kolejnych chwilach ruchu.
+
+		<h5> Instrukcja </h5>
+		Wyświetla intrukcję, którą właśnie czytasz :)
+
+		<h5> O programie </h5>
+		Wyświetla nazwię programu, autorów oraz licencję, na której program jest udostępniany.
+
+		<h5> Język </h5>
+		Pozwala zmienić język interfejsu programu na jeden z dostępnych.
+
+		 <h5> Kolor </h5>
+		 Pozwala na zmianę koloru tablicy, na której odbywają się symulacje.
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <hr>
 	</body>
 </html>

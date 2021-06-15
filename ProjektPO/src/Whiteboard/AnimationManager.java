@@ -50,7 +50,8 @@ public class AnimationManager implements Runnable {
 					cons.frame.getInputPanel().getVelocityDirectionInput().setText(Double.toString(180/Math.PI*theta)); 
 					
 					//this collect data for exporting
-					String newLine = String.valueOf(x)+","+String.valueOf(y)+","+String.valueOf(v)+","+String.valueOf(180/Math.PI*theta)+"\n";
+					String newLine = String.valueOf(x)+","+String.valueOf(y)+","+String.valueOf(v)+","
+								+String.valueOf(180/Math.PI*theta)+","+String.valueOf(T)+","+String.valueOf(V)+String.valueOf(Eef)+"\n";
 					trajectory.stringWriter.write(newLine);
 				}
 			});
