@@ -28,6 +28,7 @@ public class SaveItemListener implements ActionListener{
 		
 		JFileChooser chooser = new JFileChooser();
 		chooser.setSelectedFile(new File("newSave.oms"));
+		
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(
 		        "Orbital Movement Simulatotor", "oms", "txt");
 		    chooser.setFileFilter(filter);
