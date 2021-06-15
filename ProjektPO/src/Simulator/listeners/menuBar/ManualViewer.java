@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import Simulator.MainFrame;
-
+//B.Baur
 @SuppressWarnings("serial")
 public class ManualViewer extends JFrame implements ActionListener {
 

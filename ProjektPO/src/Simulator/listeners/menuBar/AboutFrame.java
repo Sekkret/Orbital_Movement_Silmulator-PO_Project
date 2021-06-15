@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-
+//B.Baur
 @SuppressWarnings("serial")
 public class AboutFrame extends JFrame implements ActionListener {
 
@@ -21,7 +21,7 @@ public class AboutFrame extends JFrame implements ActionListener {
 		
 		this.setLayout(new GridLayout(3,1));
 		this.add(new JLabel("Orbital Movement Simulator"));
-		this.add(new JLabel("Bartłomiej Baur & Paweł Rajter"));
+		this.add(new JLabel("Bart�omiej Baur & Bartosz Skura"));
 		this.add(new JLabel("GNU General Public License v3.0"));
 	}
 

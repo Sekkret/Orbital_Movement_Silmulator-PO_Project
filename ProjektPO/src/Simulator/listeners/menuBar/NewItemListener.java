@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingUtilities;
 
 import Simulator.MainFrame;
-
+//B.Baur
 public class NewItemListener implements ActionListener{
 
 	public NewItemListener(MainFrame frame){
