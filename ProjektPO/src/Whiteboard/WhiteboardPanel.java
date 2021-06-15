@@ -110,7 +110,7 @@ public class WhiteboardPanel extends JPanel {
 		}
 		
 	}
-	//This function runs for example after clicking the start button. It update data in WhiteboarPanel, e.g:
+	//fThis function runs for example after clicking the start button. It update data in WhiteboarPanel, e.g:
 	public void refresh() {
 		trajectory.calculateTrajectory(); //recalculate the trajectory
 		trajectory.prepareStringReader();

@@ -2,12 +2,12 @@ package Simulator;
 
 import java.awt.GridLayout;
 
-import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
+@SuppressWarnings("serial")
 public class OptionPanel extends JPanel {
 
 	public OptionPanel() {

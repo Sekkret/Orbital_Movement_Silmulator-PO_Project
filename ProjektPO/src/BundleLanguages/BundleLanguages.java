@@ -17,6 +17,7 @@ public class BundleLanguages {
 		ResourceBundle rBundle = ResourceBundle.getBundle("BundleLanguages/Bundle",language);
 		main.getBasicMenuBar().getNewItem().setText(rBundle.getString("new"));
 		main.getBasicMenuBar().getSaveItem().setText(rBundle.getString("save"));
+		main.getBasicMenuBar().getExportItem().setText(rBundle.getString("export"));
 		main.getBasicMenuBar().getWriteItem().setText(rBundle.getString("write"));
 		main.getBasicMenuBar().getFileMenu().setText(rBundle.getString("file"));
 		main.getBasicMenuBar().getHelpMenu().setText(rBundle.getString("help"));
@@ -43,9 +44,6 @@ public class BundleLanguages {
         main.getDataPanel().getCurrentEnergy().setTitle(rBundle.getString("currentEnergy"));
         main.getDataPanel().getCurrentReductedMass().setTitle(rBundle.getString("currentReductedMass"));
         main.getDataPanel().getCurrentAngularMomentum().setTitle(rBundle.getString("currentAngularMomentum"));
-        main.setErrorMessage("errorMessage");
-        main.setErrorMessageTitle("errorMessageTitle");
 	}
 	MainFrame main;
-	StartButtonListener startListener;
 }

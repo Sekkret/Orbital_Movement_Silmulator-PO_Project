@@ -21,6 +21,7 @@ public class StartButtonListener implements ActionListener {
 			frame.getWhiteboardPanel().repaint();
 			reset = false;
 			frame.getStartButton().setText("STOP");
+			frame.getExportItemListener().setAnimationRan(true);
 		}
 		else {
 			frame.getStartButton().setText("START");
@@ -31,6 +32,9 @@ public class StartButtonListener implements ActionListener {
 	
 	public boolean getReset() {
 		return reset;
+	}
+	public void setReset(boolean reset) {
+		this.reset = reset;
 	}
 	
 

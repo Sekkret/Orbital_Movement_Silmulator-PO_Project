@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+@SuppressWarnings("serial")
 public class TitledLabel extends JPanel {
 
 	public TitledLabel(String up, String down) {

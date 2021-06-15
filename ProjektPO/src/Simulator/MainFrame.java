@@ -10,15 +10,10 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 import BundleLanguages.BundleLanguages;
 import Simulator.listeners.OptionPanelCheckboxShowAxisListener;
@@ -27,6 +22,12 @@ import Simulator.listeners.OptionPanelCheckboxShowVelocity;
 import Simulator.listeners.OptionPanelCheckboxShowVelocityComponents;
 import Simulator.listeners.OptionPanelSliderListener;
 import Simulator.listeners.StartButtonListener;
+import Simulator.listeners.menuBar.AboutFrame;
+import Simulator.listeners.menuBar.ExportItemListener;
+import Simulator.listeners.menuBar.ManualViewer;
+import Simulator.listeners.menuBar.NewItemListener;
+import Simulator.listeners.menuBar.SaveItemListener;
+import Simulator.listeners.menuBar.WriteItemListener;
 import Whiteboard.WhiteboardPanel;
 
 @SuppressWarnings("serial")
@@ -35,15 +36,18 @@ public class MainFrame extends JFrame {
 	public MainFrame() throws HeadlessException {
 		
 		this.setSize(960, 600);
+		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setTitle("Symulacja BETA");
 		this.addWindowListener(new WindowAdapter(){
 			@Override
 		    public void windowClosing(WindowEvent windowEvent) {
-				if(startButton.getText()=="RESET")
+				if(startButton.getText()=="RESET") {
 					whiteboardPanel.getScheduler().shutdown();
+				}
+				whiteboardPanel.getTrajectory().getStringWriter().flush();
 				System.exit(0);
-		    }
+			}
 		});
 		
 		languageS = "pl";
@@ -103,13 +107,6 @@ public class MainFrame extends JFrame {
 	 	
 	 	
 	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
 	 	//languages management:
 	 	
 	 	bundle.changeLanguage();
@@ -138,80 +135,22 @@ public class MainFrame extends JFrame {
 		ActionListener colorListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				whiteboardPanel.setNewColor(JColorChooser.showDialog(null, "Hello", Color.blue));
+				whiteboardPanel.setNewColor(JColorChooser.showDialog(null,"", Color.WHITE));
 				whiteboardPanel.repaint();
 			}	
 		};
 		menuBar.colorItem.addActionListener(colorListener);
 		
-		ActionListener newListener = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if(startListener.getReset()==false) {
-					startButton.doClick(1);
-				}
-				SwingUtilities.invokeLater(new Runnable(){
-					@Override
-					public void run() {
-						inputPanel.xValueInput.setText("160");
-						inputPanel.yValueInput.setText("30");
-						inputPanel.centralMassInput.setText("10000000000000");
-						inputPanel.orbitingMassInput.setText("20000000000000000");
-						inputPanel.velocityValueInput.setText("80");
-						inputPanel.velocityDirectionInput.setText("57");	
-						dataPanel.currentDistance.setLabel("0");
-						dataPanel.currentEffectivePotential.setLabel("0");
-						dataPanel.currentEnergy.setLabel("0");					
-						dataPanel.currentKineticEnergy.setLabel("0");
-						dataPanel.currentPotential.setLabel("0");
-						dataPanel.currentReductedMass.setLabel("0");
-						dataPanel.currentVelocity.setLabel("0");
-						dataPanel.currentAngularMomentum.setLabel("0");
-						//whiteboardPanel.setDrawAnimation(false);
-						
-						for(double ii = 0; ii < 62832; ii++) {
-							whiteboardPanel.getTrajectory().getR()[(int) ii] =0;
-							whiteboardPanel.getTrajectory().getX()[(int) ii] = 0;
-							whiteboardPanel.getTrajectory().getY()[(int) ii] = 0;
-						}
-						whiteboardPanel.setBlueDotX(160);
-						whiteboardPanel.setBlueDotY(30);
-						whiteboardPanel.repaint();
-						}
-					});
-				
-				}
-			
-		};
-		menuBar.newItem.addActionListener(newListener);
+		menuBar.newItem.addActionListener(new NewItemListener(this));
+		menuBar.saveItem.addActionListener(new SaveItemListener(this));
+		menuBar.writeItem.addActionListener(new WriteItemListener(this));
+		menuBar.aboutItem.addActionListener(new AboutFrame());
+		
+		menuBar.manualItem.addActionListener(new ManualViewer(this));
 		
 		//data export
-		menuBar.saveItem.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser chooser = new JFileChooser();
-			    int returnVal = chooser.showSaveDialog(whiteboardPanel);
-			    if(returnVal == JFileChooser.APPROVE_OPTION) {
-			       
-			    	File exportFile = chooser.getSelectedFile();
-			    	try {
-						FileWriter fileWriter = new FileWriter(exportFile);
-						fileWriter.write(whiteboardPanel.getTrajectory().getStringWriter().toString());
-						fileWriter.flush();
-						fileWriter.close();
-					} catch (IOException e1) {
-						JOptionPane.showMessageDialog(whiteboardPanel,
-							    errorMessage,
-							    errorMessageTitle,
-							    JOptionPane.WARNING_MESSAGE);
-						e1.printStackTrace();
-					}
-			    }
-				
-			}
-			
-		});
+		exportItemListener = new ExportItemListener(this);
+		menuBar.exportItem.addActionListener(exportItemListener);
 		
 		
 		//startButton.addActionListener(constants.startListener);
@@ -268,39 +207,15 @@ public class MainFrame extends JFrame {
 		return languageS;
 	}
 
-
-
-
 	public StartButtonListener getStartListener() {
 		return startListener;
 	}
-
-
-	public String getErrorMessage() {
-		return errorMessage;
+	public ExportItemListener getExportItemListener() {
+		return exportItemListener;
 	}
 
 
-
-
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
-
-
-
-
-	public String getErrorMessageTitle() {
-		return errorMessageTitle;
-	}
-
-
-
-
-	public void setErrorMessageTitle(String errorMessageTitle) {
-		this.errorMessageTitle = errorMessageTitle;
-	}
-
+	
 
 
 
@@ -319,10 +234,11 @@ public class MainFrame extends JFrame {
 	BasicMenuBar menuBar;
 	String countryS;
 	String languageS;
-	StartButtonListener startListener;
 	
-	String errorMessage;
-	String errorMessageTitle;
+	StartButtonListener startListener;
+	ExportItemListener exportItemListener;
+	
+	
 	
 	
 

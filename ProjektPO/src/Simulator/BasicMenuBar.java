@@ -9,11 +9,14 @@ public class BasicMenuBar extends JMenuBar {
 		
 		newItem = new JMenuItem();
 		saveItem = new JMenuItem();
+		exportItem = new JMenuItem();
 		writeItem = new JMenuItem();
 		fileMenu = new JMenu();
 		fileMenu.add(newItem);
 		fileMenu.add(saveItem);
 		fileMenu.add(writeItem);
+		fileMenu.add(exportItem);
+		
 		
 		manualItem = new JMenuItem();
 		aboutItem = new JMenuItem();
@@ -45,6 +48,9 @@ public class BasicMenuBar extends JMenuBar {
 	}
 	public JMenuItem getSaveItem() {
 		return saveItem;
+	}
+	public JMenuItem getExportItem() {
+		return exportItem;
 	}
 	public JMenuItem getWriteItem() {
 		return writeItem;
@@ -78,6 +84,7 @@ public class BasicMenuBar extends JMenuBar {
 	JMenu fileMenu;
 	JMenuItem newItem;
 	JMenuItem saveItem;
+	JMenuItem exportItem;
 	JMenuItem writeItem;
 	JMenu helpMenu;
 	JMenuItem manualItem;
