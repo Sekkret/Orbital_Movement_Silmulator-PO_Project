@@ -52,6 +52,7 @@ public class MainFrame extends JFrame {
 		
 		languageS = "pl";
 		countryS = "PL";
+		
 		BundleLanguages bundle = new BundleLanguages(this);
 		
 		

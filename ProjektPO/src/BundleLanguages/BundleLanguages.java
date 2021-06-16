@@ -4,7 +4,6 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import Simulator.MainFrame;
-import Simulator.listeners.StartButtonListener;
 
 public class BundleLanguages {
 //Bartosz Skura
